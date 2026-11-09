@@ -161,7 +161,3 @@ For a controlled test, generate six months of synthetic P&L input with missing m
 [FarEye manual RevOps reporting problem](https://www.drivetrain.ai/customer-stories/fareye-shrinks-ad-hoc-reporting-times-eliminates-costly-manual-revops-workflows)
 
 [Drivetrain current financial reporting offering](https://www.drivetrain.ai/use-cases/financial-reporting)
-
----
-
-*Preserved from the original Notion case study. The content is independently authored; any synthetic examples and limitations remain disclosed above.*
