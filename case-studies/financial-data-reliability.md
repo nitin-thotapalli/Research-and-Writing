@@ -171,7 +171,3 @@ Create a test workbook with five companies and deliberately varied metric rules.
 [Whatfix customer story](https://www.drivetrain.ai/customer-stories/whatfix-automated-financial-reporting-drivetrain)
 
 [Focused Case Study — Reliable financial data and reporting (P02)](https://app.notion.com/p/40fe7cf19bdd8137a09acb33f22ab22b)
-
----
-
-*Preserved from the original Notion case study. The content is independently authored; any synthetic examples and limitations remain disclosed above.*
