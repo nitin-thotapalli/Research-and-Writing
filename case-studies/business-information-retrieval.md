@@ -162,7 +162,3 @@ Give analysts realistic tasks using current search and source selection, then co
 [AlphaSense document search guide](https://help.alpha-sense.com/hc/en-us/articles/52910432213907-Searching-in-Document-Search)
 
 [Focused Case Study — Find and verify company information (P03)](https://app.notion.com/p/40fe7cf19bdd81328b4ed2fd259b02c8)
-
----
-
-*Preserved from the original Notion case study. The content is independently authored; any synthetic examples and limitations remain disclosed above.*
