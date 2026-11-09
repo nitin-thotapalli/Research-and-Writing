@@ -151,7 +151,3 @@ The value mechanism is fewer wrong or manually reworked analytical answers. Pote
 **What remains unknown:** Actual customer error frequency, availability of approved metric definitions, performance of existing products, and user improvement in real workflows.
 
 **Portfolio evidence produced:** Defined user problem, independently checked formula, root cause analysis, solution alternatives, specific requirements, measurable evaluation and a conditional product decision.
-
----
-
-*Preserved from the original Notion case study. The content is independently authored; any synthetic examples and limitations remain disclosed above.*
