@@ -186,7 +186,3 @@ Check event logging, randomization balance, sample size and exposure. Do not cla
 **What remains unknown:** Whether acquisition mixes are comparable, real long term retention, causal onboarding friction, actual build costs and the sustained financial effect of any intervention.
 
 This is a PM + Analytics decision case study about customer value, segment economics and evidence based product prioritization. It is intentionally separate from equity research and public company valuation.
-
----
-
-*Preserved from the original Notion case study. The content is independently authored; any synthetic examples and limitations remain disclosed above.*
