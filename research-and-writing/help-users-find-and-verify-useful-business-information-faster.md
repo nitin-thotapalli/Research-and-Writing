@@ -1,6 +1,6 @@
 # Help users find and verify useful business information faster
 
-*P03 · Original Notion problem and linked case study*
+*P03 · Product Management & Analytics Research*
 
 ## Problem overview
 
@@ -171,15 +171,5 @@ Give analysts realistic tasks using current search and source selection, then co
 **Business value:** More correctly supported answers with less search and verification time. The benefit must be measured as successful verified tasks and minutes saved; clicks alone are a poor measure.
 
 **Not established:** Actual AlphaSense retrieval performance, current failure frequency, customer demand or real world uplift. None of the fictional company data is represented as an actual financial research result.
-
-## Sources and previous research
-
-[AlphaSense document search guide](https://help.alpha-sense.com/hc/en-us/articles/52910432213907-Searching-in-Document-Search)
-
-[Focused Case Study — Find and verify company information (P03)](https://app.notion.com/p/40fe7cf19bdd81328b4ed2fd259b02c8)
-
----
-
-**Original Notion case study:** https://app.notion.com/p/40fe7cf19bdd81268054ea69d0877125
 
 [← Research & Writing](README.md)
