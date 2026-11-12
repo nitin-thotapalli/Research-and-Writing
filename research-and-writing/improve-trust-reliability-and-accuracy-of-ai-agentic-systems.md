@@ -2,41 +2,37 @@
 
 *P01 · Product Management & Analytics Research*
 
-## Problem overview
+## 1. The case
 
-**Problem statement:** Teams may hesitate to rely on AI agents for important business work when answers are incorrect, lack supporting evidence, or behave inconsistently. Identify the most damaging failure types and improve accuracy, traceability and human control in a specific real workflow.
+**Problem statement:** A finance analyst needs an AI agent to answer a consequential financial question correctly and with evidence. The agent must identify the approved metric, retrieve the right customer records, calculate the result, and explain when review is required.
 
-**Primary user / persona:** Analyst or business manager using AI agents for a research or operational decision.
+In the worked case, the analyst asks for October net revenue retention (NRR). The central risk is a plausible answer that uses the wrong customer cohort—even when the source figures are valid.
 
-**Core hypothesis:** Using task-specific evaluations, reliable context and evidence checks, and human review at the right points could reduce incorrect or unsupported AI outputs. The root cause must be measured first.
+## 2. Proposed solution
 
-**Expected outcomes:** More correct and verifiable answers; fewer high-severity errors; appropriate human review; better user confidence supported by testing.
+**Recommendation:** Pilot a metric-definition contract, deterministic calculation, source-level traceability, and human review for material or uncertain answers. Start with one financial metric rather than rebuilding the entire agent.
 
-**Success metrics:** Task success; factual/grounding error rate; unsupported citation rate; correct tool-use rate; human correction burden; time-to-validated answer.
+The agent should show the approved formula, inputs, exclusions, reporting period, and audit trail. It should withhold a definitive figure when essential inputs cannot be reconciled.
 
-**Evidence status:** Not specified
+## 3. Worked results and business impact
 
-**Research status:** Analysis
+**Worked result:** Correct October NRR is **103%**. A deliberately faulty answer gives **123%** by including new-customer MRR, overstating the metric by **20 percentage points**. This establishes the error mechanism in a synthetic example, not an observed AI-product accuracy improvement.
 
-**Target companies / research contexts:** Rogo · Hebbia · AlphaSense · Finster AI (research targets; no product defect asserted)
+**Potential business impact:** Fewer incorrect management metrics, less manual rechecking, and more verifiable analytical decisions. Evaluate this using correct, fully supported task completion; review time; and critical-error rates.
+
+**Evidence boundary:** The financial example is synthetic. No commercial agent was tested, and production accuracy or time savings have not been measured.
 
 ---
 
-## Detailed case study
+## 4. How we arrived at the recommendation
 
-> **Problem: Improve trust, reliability and accuracy of AI agentic systems.**
->
-> **Specific task:** A finance analyst asks an AI agent to calculate net revenue retention from customer subscription records. The agent must use the correct definition, combine the right data, perform the arithmetic, provide supporting evidence and know when to ask for review.
->
-> **Research status:** This is a worked, independent PM + Analytics case study using a fully disclosed synthetic business dataset. The calculation and root cause in the constructed example are solved. No third party AI product has been tested and no real world accuracy improvement is claimed.
-
-## 1. Executive decision
+### Decision rationale
 
 An agent should not be considered reliable simply because it produces a coherent answer or includes a citation. The first product improvement I would test is a **metric definition check with independently calculated numbers and traceable source records**.
 
 I would not rebuild the whole agent. I would introduce this control at the point where its answer depends on a business calculation. Then I would measure whether correct answers increase without adding unacceptable delays or human review.
 
-## 2. Define the business problem precisely
+### Define the business problem precisely
 
 A financial planning analyst needs the October net revenue retention percentage for a subscription business. The company's financial data comes from billing records and customer changes. A wrong definition can create a plausible but misleading performance claim.
 
@@ -44,7 +40,7 @@ The issue to solve is: **How can an analyst tell that an AI agent used the right
 
 Success means a correct percentage, a clear formula, links to the underlying data and a visible warning if an input is missing. More generated words are not success.
 
-## 3. What the agent is asked to do
+### What the agent is asked to do
 
 **User request:** “What is October net revenue retention, and did expansion offset losses from existing customers?”
 
@@ -68,7 +64,7 @@ A deliberately faulty agent response might say “NRR is 123%” by dividing tot
 
 **Completed conclusion for the exercise:** Expansion of ₹15 lakh exceeded churn and contraction of ₹12 lakh by ₹3 lakh, so existing customer revenue grew 3%. New business added another ₹20 lakh, but it must not inflate NRR.
 
-## 4. Current user and system journey
+### Current user and system journey
 
 The analyst asks a question. The assistant identifies a metric, calls a billing or warehouse tool, extracts five inputs, applies a formula, writes an answer and cites a source. The analyst checks it before entering it into a management report.
 
@@ -83,7 +79,7 @@ The analyst asks a question. The assistant identifies a metric, calls a billing 
 
 This is a proposed workflow for the case study, not an observation of a named company's product.
 
-## 5. Root cause analysis
+### Root cause analysis
 
 **Observed failure in the constructed fixture:** The example faulty answer says 123%; the correctly defined result is 103%.
 
@@ -99,7 +95,7 @@ The difference is not a rounding problem. It is caused by including ₹20 lakh o
 
 **Confirmed root cause within this synthetic example:** The wrong customer population was used. Real agent failures would require log analysis and labelled examples before making the same diagnosis.
 
-## 6. Compare solutions
+### Compare solutions
 
 **Option A: Add more prompt instructions.** Cheap, but model behavior may remain inconsistent.
 
@@ -109,7 +105,7 @@ The difference is not a rounding problem. It is caused by including ₹20 lakh o
 
 **Decision:** Test Option C on NRR first. Keep a manual review path. Do not infer that every AI question needs the same control.
 
-## 7. Proposed product solution
+### Proposed product solution
 
 The assistant should first retrieve a metric definition: opening existing customer MRR; remove churn and contraction; add expansion; exclude new customers. It then gathers the five inputs with source IDs and periods. A calculation function computes NRR. A validation step checks completeness and any conflicting population definitions.
 
@@ -121,7 +117,7 @@ The system should not produce a definitive percentage if opening MRR is missing,
 
 **Minimum requirements:** Display formula and units; preserve source batch; distinguish existing from new customers; report data freshness; make results reproducible; allow analyst correction; keep an audit log.
 
-## 8. Data model and validation
+### Data model and validation
 
 | Field | Why needed |
 | --- | --- |
@@ -135,7 +131,7 @@ The system should not produce a definitive percentage if opening MRR is missing,
 
 Validation rules include no duplicate customer and period keys, nonnegative opening MRR, consistent currency, stable account identity, reconciled total movements, and explicit treatment of midmonth new accounts.
 
-## 9. North Star metric, KPIs and guardrails
+### North Star metric, KPIs and guardrails
 
 | Measure | Exact definition | Baseline |
 | --- | --- | --- |
@@ -149,7 +145,7 @@ Validation rules include no duplicate customer and period keys, nonnegative open
 
 A success claim needs both correctness and completion. If the system refuses every answer it would avoid numerical errors while failing the product's purpose.
 
-## 10. Test design
+### Test design
 
 Create 24 fixed source cases covering new customers, churn, expansion, reactivation, mixed currencies, duplicates, late transactions and missing data. Freeze the gold calculation and expected behavior before testing.
 
@@ -157,7 +153,7 @@ Compare a basic agent workflow with the same workflow using a metric contract an
 
 **Decision rule:** Continue only if critical errors are reduced on held out cases and reviewers still complete realistic tasks efficiently. A small synthetic benchmark is a feasibility check, not proof of production improvement.
 
-## 11. Business value and recommendation
+### Business value and recommendation
 
 The value mechanism is fewer wrong or manually reworked analytical answers. Potential time benefit equals eligible correctly completed tasks × measured reduction in checking minutes. Do not convert time saved into payroll savings without evidence.
 
