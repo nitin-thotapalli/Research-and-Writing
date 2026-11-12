@@ -178,5 +178,3 @@ Create a test workbook with five companies and deliberately varied metric rules.
 **Would reverse the decision if:** Existing workflows already enforce correct definitions, and the errors are caused chiefly by missing underlying transactions rather than definitions.
 
 **Completed:** Public business evidence, concrete data example, verified calculation, proposed contract, metrics, and test design. **Unproven:** Real error prevalence, customer saving, and live product improvement.
-
-[← Research & Writing](README.md)
