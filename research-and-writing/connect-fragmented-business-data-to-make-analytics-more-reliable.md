@@ -2,41 +2,37 @@
 
 *P02 · Product Management & Analytics Research*
 
-## Problem overview
+## 1. The case
 
-**Problem statement:** Teams work with financial and operational data spread across accounting, CRM and other systems. Delayed updates, mismatched definitions and unclear source quality can make reports hard to trust. Identify where source-to-metric problems create the most work, then improve data reliability and use. Drivetrain report freshness is one focused example.
+**Problem statement:** Finance teams and portfolio operators combine information from different businesses, accounting systems, and revenue reports. Even when the data arrives, inconsistent definitions, periods, and source quality can make a shared KPI unsuitable for comparison.
 
-**Primary user / persona:** Finance teams preparing monthly reports using data from accounting and sales tools.
+The worked case asks whether the monthly revenue figures of two fictional businesses can be combined into a dependable annual recurring revenue (ARR) metric. The broader research problem also includes data freshness and sync reliability, which need separate evaluation.
 
-**Core hypothesis:** Making incomplete updates and source-to-metric dependencies clearer can reduce avoidable checks and help analysts decide which numbers are ready, if current product workflows leave that gap.
+## 2. Proposed solution
 
-**Expected outcomes:** More dependable business reports, less manual checking, faster investigation of data issues and greater confidence in decisions. Benefits are desired, not measured.
+**Recommendation:** Standardize important metrics through a versioned definition, explicit source mapping, reconciliation checks, and an approval/exception workflow **before publishing a consolidated dashboard**.
 
-**Success metrics:** Correct source identification; data completeness; time to diagnose discrepancies; manual reconciliation effort; reports with unnoticed stale inputs.
+For ARR, distinguish recurring subscriptions from one-time revenue. Surface stale, incomplete, or mismatched inputs rather than silently treating them as ready. Prefer configuring existing FP&A capabilities when they already provide these controls.
 
-**Evidence status:** Public signals only
+## 3. Worked results and business impact
 
-**Research status:** Analysis
+**Worked result:** Annualizing the two businesses' total monthly revenue gives **₹19.8 crore**, while comparable recurring ARR is **₹18 crore**. The **₹1.8 crore difference (10% of corrected ARR)** comes from including one-time fees in the synthetic calculation.
 
-**Target companies / research contexts:** Drivetrain (focused example) · Aleph · Cube Software · Abacum
+**Potential business impact:** More comparable reporting, less reconciliation effort, and fewer decisions based on misleading aggregates. Measure correct approved figures, exception-resolution time, and reporting readiness.
+
+**Evidence boundary:** The figures demonstrate a definition mismatch, not a real portfolio correction. Source freshness, live customer benefits, and measurable productivity improvements remain unvalidated.
 
 ---
 
-## Detailed case study
+## 4. How we arrived at the recommendation
 
-> **Research decision: Make figures comparable before putting them on a shared dashboard.**
->
-> User: an operating partner reviewing results from several acquired businesses. Business need: compare revenue quality and operating performance across a portfolio. Relevant industry example: Drivetrain and its Diversis Capital customer story.
->
-> **Status:** A documented real customer problem supports this case. The two company numbers below are explicitly illustrative and computed here. The product design and KPI plan are original; no customer deployment or improved outcome is claimed.
-
-## 1. Executive conclusion
+### Decision rationale
 
 The first solution is not another dashboard. It is a **single metric definition, source map and reconciliation check** for each important portfolio KPI, starting with recurring revenue. That lets a portfolio manager compare businesses without quietly mixing different reporting rules.
 
 The immediate decision in this case: Do not publish a consolidated recurring revenue KPI unless each contributed value uses the same definition, period and company boundary. Publish exceptions instead of filling gaps with guessed values.
 
-## 2. Evidence that this is a real business problem
+### Evidence that this is a real business problem
 
 A published [Diversis Capital customer story](https://www.drivetrain.ai/customer-stories/diversis-capital-achieves-real-time-reporting-clarity) describes an investment operating partner trying to aggregate data across 15 portfolio companies. Companies used different formats and definitions for financial and SaaS metrics, which undermined comparability. A historical adjustment also missed segment information, affecting the reliability of retention and growth by segment. This is a customer account published by a vendor, so it is meaningful evidence but not an independent, representative failure survey.
 
@@ -44,7 +40,7 @@ A separate [Whatfix customer story](https://www.drivetrain.ai/customer-stories/w
 
 The opportunity for an independent product case study is to design and test **how a user knows that a shared figure is actually comparable and ready**, not to invent a missing database connector.
 
-## 3. A specific decision and user journey
+### A specific decision and user journey
 
 The investment operating partner wants to answer: **“What is the portfolio's annual recurring revenue this month, calculated on the same basis for every company?”**
 
@@ -59,7 +55,7 @@ The current manual workflow, generalized from the published problem, is:
 
 The work is not finished when all files arrive. It is finished when the combined number is semantically consistent and traceable.
 
-## 4. A worked example that exposes the error
+### A worked example that exposes the error
 
 The following two companies are **synthetic**. They are not actual Diversis portfolio holdings or actual Drivetrain records. They show why joining data is not enough.
 
@@ -77,7 +73,7 @@ Both companies send a line labelled “monthly revenue”. Company A counts ₹9
 
 This is a definition mismatch, not an indication that either company booked the wrong general ledger revenue. ARR is a commercial run rate metric; it must not be described as audited annual revenue. For a real portfolio, additional adjustments could be needed for contract duration, concessions, FX, cancellations and acquired businesses.
 
-## 5. Root cause analysis
+### Root cause analysis
 
 **Observed symptom in the example:** Combined ARR is overstated.
 
@@ -93,7 +89,7 @@ This is a definition mismatch, not an indication that either company booked the 
 
 The published customer story supports the relevance of inconsistent definitions, but it does not prove the same mistake occurred in the reported portfolio.
 
-## 6. Product solution: one metric contract and exceptions workflow
+### Product solution: one metric contract and exceptions workflow
 
 Each portfolio company maps its source data to a centrally agreed metric. The platform records which sources and rules produced the number, checks the input, and returns either a verified figure or an exception to resolve.
 
@@ -112,7 +108,7 @@ Each portfolio company maps its source data to a centrally agreed metric. The pl
 
 **Minimum product behavior:** Show the corrected portfolio value, and for each contributing company a link to its figures, exclusions and reconciliation. If source definitions change or a required month is missing, show the affected portfolio metric as needing review. Do not silently use the last known number as current.
 
-### Example output
+#### Example output
 
 | Company | Reported annualized amount | Comparable ARR | Issue | Action |
 | --- | --- | --- | --- | --- |
@@ -120,7 +116,7 @@ Each portfolio company maps its source data to a centrally agreed metric. The pl
 | B | ₹7.8 crore | ₹7.2 crore | One time services included | Exclude ₹5 lakh monthly component |
 | Combined | ₹19.8 crore | ₹18 crore | Values not initially comparable | Publish corrected definition with evidence |
 
-## 7. Data and SQL logic
+### Data and SQL logic
 
 Minimum fields: company\_id, source\_record\_id, product\_type, contract\_id, customer\_id, currency, period\_end, revenue\_amount, is\_recurring, source\_loaded\_at, mapping\_version, approval\_status.
 
@@ -144,7 +140,7 @@ This simplified SQL assumes source rows already represent monthly amounts in a c
 
 Quality checks: same cutoff month, unique contract and component keys, valid currency, no missing reporting entities, totals reconcile to source components, and each published metric can reproduce its input rows.
 
-## 8. Requirements and trade-offs
+### Requirements and trade-offs
 
 1. A data owner must approve the business definition and mapping for each company.
 2. Every number must record company, period, version, data source and transformation.
@@ -155,7 +151,7 @@ Quality checks: same cutoff month, unique contract and component keys, valid cur
 
 **Alternative:** A spreadsheet checklist could solve this for a very small portfolio at lower cost. A product workflow becomes attractive when many companies, revisions, metrics and reviewers make manual consistency unreliable. If existing platform features already provide this, prefer configuring the contract and controls, not building new features.
 
-## 9. North Star, KPIs and guardrails
+### North Star, KPIs and guardrails
 
 | Measure | Exact definition | Status |
 | --- | --- | --- |
@@ -169,7 +165,7 @@ Quality checks: same cutoff month, unique contract and component keys, valid cur
 
 **Business impact:** Avoided reconciliation effort plus fewer decisions based on inconsistent figures. Do not assign an investment return or payroll saving to this exercise without actual evidence.
 
-## 10. Experiment and decision memo
+### Experiment and decision memo
 
 Create a test workbook with five companies and deliberately varied metric rules. Prepare known correct calculations independently. Give finance analysts the same data and task using (A) ordinary source spreadsheets and (B) a standard definition plus exception view. Measure first pass accuracy, time to correct portfolio ARR and reviewer explanations. Include missing currency, late source and duplicate contract cases. Audit current commercial product features before proposing code.
 
