@@ -1,6 +1,6 @@
 # Reduce repetitive work in analytics and reporting
 
-*P04 · Product Management & Analytics Research*
+*P03 · Product Management & Analytics Research*
 
 ## 1. The case
 
