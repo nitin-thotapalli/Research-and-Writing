@@ -259,5 +259,3 @@ The next step is to check the maturity journey and customer feedback, then test 
 The important lesson is the approach: start with a broad business concern, separate customers who do not need another FD from those who do, identify the point where motivated customers get stuck, and test a small improvement before expanding it.
 
 **A better repeat investment rate should come from helping customers make the right next decision, not simply getting them to return to the app more often.**
-
-[Back to Case Studies](README.md) · [Repository overview](../README.md)
