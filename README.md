@@ -19,17 +19,17 @@ A practice Product Management case about why customers who completed their first
 
 **[Read the case study](case-studies/improving-repeat-fd-investments.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
-## Research articles
+## Original research problems from Notion
 
-Five independent, decision-oriented articles, each structured around **the ask, worked results, business impact, analysis and recommendation**:
+Five original **Product Mgmt + AI → Problems** research studies, with their existing detailed case-study content:
 
-- [Designing Verifiable AI-Agent Financial Answers](research-and-writing/verifiable-ai-agent-financial-answers.md)
-- [Making Financial Data Comparable Across Businesses](research-and-writing/comparable-financial-data-across-businesses.md)
-- [Finding and Verifying Business Information Faster](research-and-writing/finding-and-verifying-business-information.md)
-- [Automating Financial Variance Reporting Without Losing Control](research-and-writing/automating-financial-variance-reporting.md)
-- [Prioritizing Product Investment with Segment Economics](research-and-writing/prioritizing-product-investment-with-segment-economics.md)
+- [P01 — Improve trust, reliability and accuracy of AI agentic systems](research-and-writing/improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md)
+- [P02 — Connect fragmented business data to make analytics more reliable](research-and-writing/connect-fragmented-business-data-to-make-analytics-more-reliable.md)
+- [P03 — Help users find and verify useful business information faster](research-and-writing/help-users-find-and-verify-useful-business-information-faster.md)
+- [P04 — Reduce repetitive work in analytics and reporting](research-and-writing/reduce-repetitive-work-in-analytics-and-reporting.md)
+- [P05 — Improve business and financial decisions using clearer analytics](research-and-writing/improve-business-and-financial-decisions-using-clearer-analytics.md)
 
-**[Browse Research & Writing](research-and-writing/README.md)**
+**[Browse all five studies](research-and-writing/README.md)
 
 ## About this work
 
