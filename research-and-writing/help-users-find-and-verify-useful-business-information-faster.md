@@ -2,41 +2,37 @@
 
 *P03 · Product Management & Analytics Research*
 
-## Problem overview
+## 1. The case
 
-**Problem statement:** People researching a business can spend too much time searching across documents and checking which results are relevant and trustworthy. Identify the biggest real source of delay—coverage, retrieval, filters or verification—and improve discovery without sacrificing accuracy. AlphaSense search is one focused research example.
+**Problem statement:** An investment or corporate-development analyst must answer a precise company-research question, but a broad document search may return the wrong entity, fiscal year, or metric. A plausible answer is not useful unless its supporting documents establish both the figures and their definitions.
 
-**Primary user / persona:** Investment / corporate development analyst screening under-covered company set.
+The fictional task: determine how Helios Software's net revenue retention changed from FY25 to FY26 and whether it includes new customers.
 
-**Core hypothesis:** A targeted improvement to a measured search or verification problem can help people find credible evidence faster without hiding important sources.
+## 2. Proposed solution
 
-**Expected outcomes:** Less time searching and checking sources; more relevant and verifiable documents; faster research decisions. Outcomes remain unmeasured.
+**Recommendation:** First use existing company, reporting-period, and source filters. Where research tasks still fail, test a concise **Research Evidence Packet** that keeps the question, required documents, key figures, metric definition, and citations together.
 
-**Success metrics:** Time to useful verified source; relevant results in top five; repeat queries; source verification accuracy; task success.
+Do not assume a new search feature is necessary until observation shows that the current retrieval and verification workflow is insufficient.
 
-**Evidence status:** Public signals only
+## 3. Worked results and business impact
 
-**Research status:** Analysis
+**Worked result:** In the invented six-document corpus, NRR rises from **107% to 112%**, or **5 percentage points**, and excludes new-customer revenue. Three documents are required for the complete answer. A broad illustrative ranking returns **1 of 3** needed sources in the top three; a designed constrained ranking returns **3 of 3**.
 
-**Target companies / research contexts:** AlphaSense (focused example) · Rogo · Hebbia · Quartr
+**Potential business impact:** Faster verified research and fewer unsupported memo claims. Evaluate complete task accuracy, required-source coverage, query reformulations, and time to a reviewer-accepted answer.
+
+**Evidence boundary:** The search rankings are synthetic test fixtures, **not** a benchmark or proven improvement in AlphaSense or any other live product.
 
 ---
 
-## Detailed case study
+## 4. How we arrived at the recommendation
 
-> **Problem: Help users find and verify useful business information faster.**
->
-> **Specific task:** A corporate development analyst must find the right company documents to answer one retention question, without mixing company names, financial definitions or reporting years.
->
-> **Research status:** This is a reproducible search and verification exercise built from an explicitly synthetic six document corpus. The calculation and test labels are solved in the example. It is not a benchmark of AlphaSense or any other live product.
-
-## 1. Executive decision
+### Decision rationale
 
 Before designing more search filters or AI summaries, test whether users can locate **the minimum source set required to answer a specific business question correctly**. In the constructed corpus below, a generic search ranking surfaces a competitor and the wrong metric before the necessary definition document. A query with company, year and metric constraints resolves the example.
 
 **Product recommendation:** Use the existing company and document filters wherever they are available. Where observed users still fail, test a small task focused search experience that keeps the research question, required document types and supporting citations together.
 
-## 2. User, business context and problem statement
+### User, business context and problem statement
 
 An analyst is comparing possible acquisition targets. For one business, the analyst needs a defensible retention trend for a short screening note. The analyst should not spend most of the time repeating searches and figuring out which sources discuss the right company, period and type of retention.
 
@@ -46,7 +42,7 @@ Helios Software is fictional. No claims are being made about a real business.
 
 The desired outcome is a correct answer with the documents needed to support it. A search result that looks relevant but describes logo retention, a competitor or an old period is not sufficient.
 
-## 3. Evidence available about the product category
+### Evidence available about the product category
 
 Financial search tools already provide powerful capabilities. For example, [AlphaSense's document search guide](https://help.alpha-sense.com/hc/en-us/articles/52910432213907-Searching-in-Document-Search) describes company and keyword search. Its [source selection guide](https://help.alpha-sense.com/hc/en-us/articles/42208598365203-Search-Library-Identifying-the-Right-Sources-for-My-Search) helps users choose among different document types.
 
@@ -54,7 +50,7 @@ Earlier research in this workspace recorded dated individual reviews discussing 
 
 **Important design constraint:** Do not claim existing financial intelligence tools lack company filters, source selection, citations or document review features. This case tests the user task and the quality of its result.
 
-## 4. The six document research corpus
+### The six document research corpus
 
 All six documents below are invented test fixtures. Their IDs, titles, values and search order are supplied so the case can be reproduced, not presented as real third party research.
 
@@ -69,7 +65,7 @@ All six documents below are invented test fixtures. Their IDs, titles, values an
 
 **Correct answer:** NRR increased from 107% in FY25 to 112% in FY26, an increase of **5 percentage points**. The definition excludes revenue from new customers. The correct answer requires D1, D2 and D6. Do not confuse a 5 percentage point increase with 5% relative growth.
 
-## 5. Reproduce a search problem
+### Reproduce a search problem
 
 Consider an illustrative ranking for a broad search “Helios retention 2026”:
 
@@ -93,7 +89,7 @@ A more specific query intent, “Helios Software net revenue retention, FY25 ver
 
 **These are calculated properties of invented rankings.** They are not actual improvements achieved by an algorithm or commercial product. Their purpose is to define how the product decision should be evaluated.
 
-## 6. Root cause analysis
+### Root cause analysis
 
 The broad result list contains all the right information in the six document corpus, but the top results do not assemble the required evidence early enough. That means the demonstrated failure is not missing content.
 
@@ -108,7 +104,7 @@ The broad result list contains all the right information in the six document cor
 
 **Established cause in the synthetic fixture:** The broad search lacks enough entity, metric and period constraints. A real product study must still determine whether ranking, filters, query wording, source access or user experience is responsible for failures.
 
-## 7. Proposed product and analytics solution
+### Proposed product and analytics solution
 
 The smallest useful experience is a **Research Evidence Packet** created from a user question and confirmed source constraints.
 
@@ -126,7 +122,7 @@ The system records the target company, the metric, reporting periods, the minimu
 
 The research packet is an output of the workflow, not a replacement for search, and not a claim that products like AlphaSense lack comparable capabilities.
 
-## 8. Requirements and practical tests
+### Requirements and practical tests
 
 1. Let the analyst specify company, metric and periods using existing product features before introducing any new UI.
 2. Keep results tied to a canonical company ID and document date.
@@ -138,7 +134,7 @@ The research packet is an output of the workflow, not a replacement for search, 
 
 **Acceptance tests:** A competitor's document must not silently substitute for the target; a prior year's report cannot appear as current without a label; an NRR answer must use an NRR definition; and the result must be reproducible from retained evidence.
 
-## 9. Metric hierarchy and data model
+### Metric hierarchy and data model
 
 **Grain:** A query for retrieval diagnosis; a complete user task for product success; a query document pair for relevance grading.
 
@@ -154,7 +150,7 @@ The research packet is an output of the workflow, not a replacement for search, 
 
 Minimum data fields: task\_id, query\_id, canonical\_company\_id, intended\_metric, reporting\_period, document\_id, document\_version, rank, relevance\_label, source\_access, opened\_at, task\_complete, reviewer\_result and time\_elapsed.
 
-## 10. Validation experiment
+### Validation experiment
 
 Build at least 20 source labelled research tasks across comparable documents, including company aliases, year boundaries, lookalike metrics, sparse sources and contradictions. Have reviewers label necessary documents without seeing the current ranking.
 
@@ -162,7 +158,7 @@ Give analysts realistic tasks using current search and source selection, then co
 
 **Decision rule:** If existing filters and guidance solve the problem, improve teaching or defaults. If constrained ranking measurably improves complete verified research without hiding important documents, consider a narrow relevance improvement. If documents are unavailable, solve coverage, not interface labeling.
 
-## 11. Outcome and final recommendation
+### Outcome and final recommendation
 
 **Completed exercise:** A distinct user question, six labelled source records, the correct five percentage point calculation, a reproduced retrieval error, a source packet and a measurable product hypothesis.
 
