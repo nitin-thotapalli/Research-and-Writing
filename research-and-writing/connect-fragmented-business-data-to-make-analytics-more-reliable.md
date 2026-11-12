@@ -1,6 +1,6 @@
 # Connect fragmented business data to make analytics more reliable
 
-*P02 · Original Notion problem and linked case study*
+*P02 · Product Management & Analytics Research*
 
 ## Problem overview
 
@@ -178,17 +178,5 @@ Create a test workbook with five companies and deliberately varied metric rules.
 **Would reverse the decision if:** Existing workflows already enforce correct definitions, and the errors are caused chiefly by missing underlying transactions rather than definitions.
 
 **Completed:** Public business evidence, concrete data example, verified calculation, proposed contract, metrics, and test design. **Unproven:** Real error prevalence, customer saving, and live product improvement.
-
-## Sources and linked research
-
-[Diversis Capital customer story](https://www.drivetrain.ai/customer-stories/diversis-capital-achieves-real-time-reporting-clarity)
-
-[Whatfix customer story](https://www.drivetrain.ai/customer-stories/whatfix-automated-financial-reporting-drivetrain)
-
-[Focused Case Study — Reliable financial data and reporting (P02)](https://app.notion.com/p/40fe7cf19bdd8137a09acb33f22ab22b)
-
----
-
-**Original Notion case study:** https://app.notion.com/p/40fe7cf19bdd81edabdcdf8a89062f97
 
 [← Research & Writing](README.md)
