@@ -171,5 +171,3 @@ Give analysts realistic tasks using current search and source selection, then co
 **Business value:** More correctly supported answers with less search and verification time. The benefit must be measured as successful verified tasks and minutes saved; clicks alone are a poor measure.
 
 **Not established:** Actual AlphaSense retrieval performance, current failure frequency, customer demand or real world uplift. None of the fictional company data is represented as an actual financial research result.
-
-[← Research & Writing](README.md)
