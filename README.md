@@ -9,7 +9,7 @@ The portfolio has two reading spaces:
 | | Section | What you'll find |
 | --- | --- | --- |
 | 🔍 | **[Case Studies](case-studies/README.md)** | **Space for solving problems.** The question, assumptions, root cause analysis, decisions and next steps |
-| ✍️ | **[Research & Writing](research-and-writing/README.md)** | **Space for exploring ideas.** Independent research notes, articles, hypotheses and essays |
+| ✍️ | **[Research & Writing](research-and-writing/README.md)** | **Space for exploring ideas.** Independent research articles across AI reliability, financial data and analytics |
 
 ## Featured case study
 
@@ -19,9 +19,21 @@ A practice Product Management case about why customers who completed their first
 
 **[Read the case study](case-studies/improving-repeat-fd-investments.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
-## About this case
+## Research articles
 
-This case study uses sample data and customer scenarios to explain the thinking behind a proposed product change. The full report is available as a Markdown article, with a link to the visual mind map.
+Five independent, decision-oriented articles, each structured around **the ask, worked results, business impact, analysis and recommendation**:
+
+- [Designing Verifiable AI-Agent Financial Answers](research-and-writing/verifiable-ai-agent-financial-answers.md)
+- [Making Financial Data Comparable Across Businesses](research-and-writing/comparable-financial-data-across-businesses.md)
+- [Finding and Verifying Business Information Faster](research-and-writing/finding-and-verifying-business-information.md)
+- [Automating Financial Variance Reporting Without Losing Control](research-and-writing/automating-financial-variance-reporting.md)
+- [Prioritizing Product Investment with Segment Economics](research-and-writing/prioritizing-product-investment-with-segment-economics.md)
+
+**[Browse Research & Writing](research-and-writing/README.md)**
+
+## About this work
+
+These studies use explicit assumptions and worked scenarios to demonstrate product and analytical reasoning. Proposed improvements are distinguished from validated outcomes; supporting public sources appear within individual articles.
 
 ## Related work
 
