@@ -9,7 +9,7 @@ The portfolio has two reading spaces:
 | | Section | What you'll find |
 | --- | --- | --- |
 | 🔍 | **[Case Studies](case-studies/README.md)** | **Space for solving problems.** The question, assumptions, root cause analysis, decisions and next steps |
-| ✍️ | **[Research & Writing](research-and-writing/README.md)** | **Space for exploring ideas.** Independent research articles across AI reliability, financial data and analytics |
+| ✍️ | **[Research & Writing](research-and-writing/README.md)** | **Space for exploring ideas.** Independent research on reliable AI agents, unified data, and workflow automation |
 
 ## Featured case study
 
@@ -21,15 +21,13 @@ A practice Product Management case about why customers who completed their first
 
 ## Research articles
 
-Five studies designed for quick executive review followed by detailed product and analytical reasoning. Each begins with the case, proposed solution, and worked outcomes before moving into the full analysis.
+Three complementary studies, each covering a distinct capability in AI-enabled organizations: **reliable agents**, **unified data context**, and **controlled workflow automation**.
 
 - [P01 — Improve trust, reliability and accuracy of AI agentic systems](research-and-writing/improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md)
-- [P02 — Connect fragmented business data to make analytics more reliable](research-and-writing/connect-fragmented-business-data-to-make-analytics-more-reliable.md)
-- [P03 — Help users find and verify useful business information faster](research-and-writing/help-users-find-and-verify-useful-business-information-faster.md)
-- [P04 — Reduce repetitive work in analytics and reporting](research-and-writing/reduce-repetitive-work-in-analytics-and-reporting.md)
-- [P05 — Improve business and financial decisions using clearer analytics](research-and-writing/improve-business-and-financial-decisions-using-clearer-analytics.md)
+- [P02 — Unifying fragmented data across systems](research-and-writing/unifying-fragmented-data-across-systems.md)
+- [P03 — Reduce repetitive work in analytics and reporting](research-and-writing/reduce-repetitive-work-in-analytics-and-reporting.md)
 
-**[Browse all five studies](research-and-writing/README.md)**
+**[Browse all three studies](research-and-writing/README.md)**
 
 ## About this work
 
