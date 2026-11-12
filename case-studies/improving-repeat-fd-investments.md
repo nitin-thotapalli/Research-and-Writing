@@ -1,4 +1,4 @@
-# Improving Repeat FD Investments: Root Cause Analysis
+# Improving Repeat FD Investments (CLV): Root Cause Analysis
 
 *Product Management Case Study | Fixed Deposits*
 
