@@ -13,11 +13,11 @@ The portfolio has two reading spaces:
 
 ## Featured case study
 
-### [Improving Repeat FD Investments: Root Cause Analysis](case-studies/README.md)
+### [Improving Repeat FD Investments: Root Cause Analysis](case-studies/improving-repeat-fd-investments.md)
 
 A practice Product Management case about why customers who completed their first fixed deposit might not invest again. It follows the problem from defining the repeat investment rate through customer groups, internal and external causes, two customer scenarios, a 5 Whys exercise, assumed findings and a small action plan.
 
-**[Read the case study](case-studies/README.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
+**[Read the case study](case-studies/improving-repeat-fd-investments.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
 ## Scope and evidence
 
