@@ -2,26 +2,24 @@
 
 > **Space for exploring ideas.**
 
-Five independent Product Management and Analytics research studies, organized for readers who want either a **one-minute decision summary** or a thorough examination of the underlying work.
+Three distinct research areas: **trustworthy AI agents**, **data integration and unification**, and **workflow automation**. The shared approach is to define a consequential user problem, propose a focused solution, show a worked example, then document the detailed reasoning, trade-offs, implementation logic and tests.
 
-Each study opens with **the case → proposed solution → worked results and potential business impact**. The remainder documents **how the recommendation was reached**: context, evidence, calculations, root-cause analysis, alternatives, product requirements, success measures and validation.
-
-Illustrative calculations are distinguished from real deployments or measured business outcomes.
+Each article is organized for a quick read of the **case → recommendation → worked outcome** followed by deeper analysis. Industry examples illustrate general principles, not limits on where these methods apply.
 
 ## Research articles
 
 | ID | Research problem | Article |
 | --- | --- | --- |
 | P01 | Improve trust, reliability and accuracy of AI agentic systems | [Read the article](improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md) |
-| P02 | Connect fragmented business data to make analytics more reliable | [Read the article](connect-fragmented-business-data-to-make-analytics-more-reliable.md) |
-| P03 | Help users find and verify useful business information faster | [Read the article](help-users-find-and-verify-useful-business-information-faster.md) |
-| P04 | Reduce repetitive work in analytics and reporting | [Read the article](reduce-repetitive-work-in-analytics-and-reporting.md) |
-| P05 | Improve business and financial decisions using clearer analytics | [Read the article](improve-business-and-financial-decisions-using-clearer-analytics.md) |
+| P02 | Unifying fragmented data across systems: from disconnected events to one operational view | [Read the article](unifying-fragmented-data-across-systems.md) |
+| P03 | Reduce repetitive work in analytics and reporting | [Read the article](reduce-repetitive-work-in-analytics-and-reporting.md) |
 
 ## Scope and evidence
 
-Worked financial and product examples use stated assumptions; their calculated outputs are not presented as proven deployment results. Each article specifies its evidence limits and the tests needed before a product or investment decision can be treated as validated.
+Worked scenarios and calculations are illustrative unless a source is explicitly identified. Proposed systems and benefits are distinguished from measured outcomes. Evaluate each idea through reproducible inputs, independent checks, a manual or existing-tool baseline, and decision-specific guardrails.
 
-For other product case studies, see [Case Studies](../case-studies/README.md).
+Earlier explorations are retained separately under [archives](../archives/research-and-writing/) and are **not** part of the active research collection.
+
+For product case studies, see [Case Studies](../case-studies/README.md).
 
 [← Repository overview](../README.md)
