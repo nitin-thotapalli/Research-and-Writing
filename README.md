@@ -19,9 +19,9 @@ A practice Product Management case about why customers who completed their first
 
 **[Read the case study](case-studies/improving-repeat-fd-investments.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
-## Original research problems from Notion
+## Research articles
 
-Five original **Product Mgmt + AI → Problems** research studies, with their existing detailed case-study content:
+Five studies designed for quick executive review followed by detailed product and analytical reasoning. Each begins with the case, proposed solution, and worked outcomes before moving into the full analysis.
 
 - [P01 — Improve trust, reliability and accuracy of AI agentic systems](research-and-writing/improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md)
 - [P02 — Connect fragmented business data to make analytics more reliable](research-and-writing/connect-fragmented-business-data-to-make-analytics-more-reliable.md)
@@ -29,7 +29,7 @@ Five original **Product Mgmt + AI → Problems** research studies, with their ex
 - [P04 — Reduce repetitive work in analytics and reporting](research-and-writing/reduce-repetitive-work-in-analytics-and-reporting.md)
 - [P05 — Improve business and financial decisions using clearer analytics](research-and-writing/improve-business-and-financial-decisions-using-clearer-analytics.md)
 
-**[Browse all five studies](research-and-writing/README.md)
+**[Browse all five studies](research-and-writing/README.md)**
 
 ## About this work
 
