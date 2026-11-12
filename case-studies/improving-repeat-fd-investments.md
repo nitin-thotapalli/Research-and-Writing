@@ -2,7 +2,7 @@
 
 *Product Management Case Study | Fixed Deposits*
 
-The complete visual breakdown is available in the [Whimsical mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC).
+The link to the complete visual breakdown is available here : https://whimsical.com/thnitin-s/improving-repeat-fd-investments-root-cause-analysis-X6jYEXqktCqQYQioPWoXxC 
 
 ## 1. The situation
 
@@ -10,7 +10,7 @@ Imagine a WealthTech platform that helps people invest in FDs, bonds and other f
 
 **The question: How can we increase repeat investments?**
 
-<!-- IMAGE: Add a screenshot of the case scenario here, e.g. images/01-case-and-goal.png -->
+
 
 ## 2. Proposed solution
 
@@ -35,6 +35,9 @@ The analysis follows a simple sequence:
 The purpose is to avoid building features before knowing **whether a customer has a reason to invest again and what is stopping them**.
 
 ## 4. Goal and starting assumptions
+
+<img width="684" height="145" alt="image" src="https://github.com/user-attachments/assets/61bffcab-6661-4acc-bcf1-48e941827a62" />
+
 
 ### What are we trying to improve?
 
@@ -70,9 +73,12 @@ For a fair comparison, count each customer once and include only first-time FD i
 
 Later, because we focus on maturity, we will also measure the **share of customers who reinvest within 30 days after their FD matures**. This is a more direct way to test the proposed solution.
 
-<!-- IMAGE: Add the goal, assumptions and formula here, e.g. images/02-goal-and-assumptions.png -->
+
 
 ## 5. Understanding the problem
+
+<img width="753" height="368" alt="image" src="https://github.com/user-attachments/assets/2e0dca92-5c4b-4ef9-90fa-2445ab75a09d" />
+
 
 Before looking for a root cause, we need answers to seven questions.
 
@@ -88,9 +94,12 @@ Before looking for a root cause, we need answers to seven questions.
 
 The most important lesson here is that **not making a second FD is not the same as leaving the platform**. A customer with a 12-month FD may be satisfied and waiting for maturity.
 
-<!-- IMAGE: Add the Understanding the Problem mind map here, e.g. images/03-understanding-the-problem.png -->
+
 
 ## 6. Who are we solving this for?
+
+<img width="492" height="193" alt="image" src="https://github.com/user-attachments/assets/1742a046-408c-4a1f-9268-de117371b74f" />
+
 
 For the exercise, we divided users into three broad age groups.
 
@@ -104,9 +113,12 @@ These groups help us organize the exercise, but age alone does not tell us someo
 
 **Why select Group 2?** We are exploring customers who may have both the money and the intention to invest again. That makes this group useful for studying why a second FD does not happen. We would confirm the priority through customer and investment data.
 
-<!-- IMAGE: Add the customer groups diagram here, e.g. images/04-user-groups.png -->
+
 
 ## 7. What could stop a customer from investing again?
+
+<img width="458" height="194" alt="image" src="https://github.com/user-attachments/assets/5353c071-0dff-4491-a995-c35ab147c993" />
+
 
 We separated possible causes into two broad categories.
 
@@ -125,6 +137,8 @@ The aim is not to eliminate every reason for not investing. It is to identify **
 
 ## 8. Scenario 1: The first FD is still running
 
+ <img width="655" height="211" alt="image" src="https://github.com/user-attachments/assets/59ac5a85-2297-4cde-bf67-13442951f64f" />
+  
 Consider a customer from Group 2 who completed a first FD but has not invested again.
 
 **Our line of questioning:**
@@ -139,9 +153,10 @@ There are other possibilities: a different financial product, a better offer fro
 
 **Decision:** Do not prioritize pushing a second FD to customers who have no spare money or no investment need. This could create pressure without solving a real customer problem.
 
-<!-- IMAGE: Add Scenario 1 here, e.g. images/06-scenario-1.png -->
 
 ## 9. Scenario 2: The FD has matured, but no new FD was made
+
+<img width="521" height="226" alt="image" src="https://github.com/user-attachments/assets/f6ffd0dc-7eda-4570-a761-1ae040228a5d" />
 
 Now consider a different Group 2 customer. Their FD has matured. For this exercise, **assume they have money available and want another FD**, but have not completed one.
 
@@ -167,9 +182,12 @@ To explore one *possible* explanation, we follow the unclear-next-step path.
 
 We would also check other explanations, including better rates elsewhere, trust concerns and customers who need their cash.
 
-<!-- IMAGE: Add Scenario 2 and its 5 Whys here, e.g. images/07-scenario-2.png -->
+
 
 ## 10. What we would ask other teams
+
+<img width="500" height="248" alt="image" src="https://github.com/user-attachments/assets/77e8c1dd-9886-4589-90a3-b25fbed90fc1" />
+
 
 Before recommending changes, we would request a few specific answers.
 
@@ -183,9 +201,13 @@ Before recommending changes, we would request a few specific answers.
 
 The goal is to get **just enough information to choose which problem is worth solving**, rather than collecting every possible metric.
 
-<!-- IMAGE: Add the team questions diagram here, e.g. images/08-team-questions.png -->
+  <img width="511" height="210" alt="image" src="https://github.com/user-attachments/assets/a2a3f691-7df1-4de5-89c2-78f36a45396d" />
+
 
 ## 11. Action plan
+
+<img width="632" height="302" alt="image" src="https://github.com/user-attachments/assets/a42d4d07-e663-493e-b06f-1f5cdeb7f8c0" />
+
 
 Our proposed solution is a clearer FD maturity and reinvestment journey for customers who want another suitable FD.
 
@@ -214,7 +236,7 @@ Only expand the improved experience if it helps customers make suitable investme
 
 Return to the evidence. Customers may want better rates, have trust concerns, prefer another bank or need access to their money. If the reasons are different from our original assumption, **change the approach rather than sending more reminders**.
 
-<!-- IMAGE: Add the Actionables mind map here, e.g. images/10-action-plan.png -->
+
 
 ## 12. Tradeoffs
 
