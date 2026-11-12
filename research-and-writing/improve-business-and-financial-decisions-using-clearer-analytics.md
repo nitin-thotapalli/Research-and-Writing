@@ -2,35 +2,31 @@
 
 *P05 · Product Management & Analytics Research*
 
-## Problem overview
+## 1. The case
 
-**Problem statement:** A financial intelligence product team has limited capacity, but trial counts, user activation, retained value and revenue suggest different customer segments deserve priority. Establish which group shows strong repeat value and which improvement is worth testing without treating correlation as proof.
+**Problem statement:** A financial-intelligence SaaS product team has limited development capacity and three competing customer segments: corporate-development teams, FP&A teams, and individual researchers. Trial volumes, retention, pricing, and service costs point to different priorities.
 
-**Primary user / persona:** Product Manager, Head of Product or Product Analytics lead at a financial intelligence platform.
+The case asks which segment merits the **next product experiment**, rather than assuming the largest trial segment should receive the most engineering investment.
 
-**Core hypothesis:** Combining a consistent account cohort funnel with direct service contribution and user research can make the next product investment decision more defensible than choosing based on signups or gross revenue alone.
+## 2. Proposed solution
 
-**Expected outcomes:** Clearer choice of product priority, better visibility of repeat user value, and more defensible spending decisions. Real business improvement is not measured.
+**Recommendation:** Investigate the FP&A segment's first successful connected report, with a narrowly scoped discovery and onboarding experiment. Continue parallel discovery for high-value corporate-development users. Do not commit to a broad rollout until genuine customer observation identifies the friction.
 
-**Success metrics:** Correct cohort retention and conversion; user value task completion; segment contribution; first qualified activation; guardrails on errors and support burden; experiment effect.
+Use account-based cohorts and consistent activation, retention, paid-conversion, and direct-service contribution measures to make the decision reviewable.
 
-**Evidence status:** Not specified
+## 3. Worked results and business impact
 
-**Research status:** Analysis
+**Worked result:** In the fictional cohort, FP&A teams generate **₹3.96 lakh in monthly contribution after attributable direct service costs**, compared with **₹3.50 lakh** for corporate development and **₹0.75 lakh** for individual researchers. FP&A also has the highest defined day-30 retained share of trial accounts at **31.25%**.
 
-**Target companies / research contexts:** S&P Global Market Intelligence · Moody's Analytics · FactSet · AlphaSense (research contexts)
+**Potential business impact:** Better alignment between product investment, repeated customer value, and contribution economics. A purely hypothetical four-account conversion gain would add **₹88,000 per month** in direct contribution before other costs; it is a sensitivity, not a forecast.
+
+**Evidence boundary:** The cohorts and economics are synthetic. Neither onboarding friction nor improved conversion has been established in production.
 
 ---
 
-## Detailed case study
+## 4. How we arrived at the recommendation
 
-> **Problem: Improve business and financial decisions using clearer analytics.**
->
-> **Specific decision:** A product leader at a financial intelligence software company must decide which customer segment deserves the next product onboarding improvement. The team has limited engineering capacity and several segments show different adoption and commercial results.
->
-> **Status:** This is a fully synthetic product analytics exercise. The cohort calculations, comparison and initial decision are completed for the example. No real company metrics, customer research or experiment results are claimed. This is **not** an investment research report or stock valuation.
-
-## 1. Executive decision
+### Decision rationale
 
 I would **prioritize an instrumented onboarding experiment for FP&A teams**, while continuing research into corporate development users and avoiding a broad launch to individual researchers for now.
 
@@ -38,7 +34,7 @@ Why FP&A? In this constructed cohort, it contributes the highest monthly amount 
 
 The product lesson is that a team should not choose its next investment based on signups, raw usage or total revenue alone. It should connect customer value, conversion, retention, service cost, uncertainty and the decision being made.
 
-## 2. Define the business problem
+### Define the business problem
 
 A product leader sees healthy trials but has only one engineering team for the next two months. Sales argues for corporate development, customer success argues for finance planning teams, and marketing points to the large number of individual analysts.
 
@@ -48,7 +44,7 @@ All three can show an attractive number if they choose a different metric. The t
 
 **Product value proposition:** Financial intelligence software helps teams find, interpret and reuse business information for real decisions. This fictional example measures whether different customer types adopt and pay for that repeated value.
 
-## 3. Data provided for one trial cohort
+### Data provided for one trial cohort
 
 The following values are invented. The three segment groups are disjoint and come from the same illustrative acquisition period. A “30 day retained account” means it completed at least one qualifying research task in days 24 through 30 after trial start. A paying account is counted within the retained group in this fixture.
 
@@ -63,7 +59,7 @@ The following values are invented. The three segment groups are disjoint and com
 
 The service costs here are illustrative direct serving costs, not audited gross margin or full customer acquisition cost. All paying accounts are assumed to be at their stated plan price without discounts for this exercise.
 
-## 4. Calculate what the data actually says
+### Calculate what the data actually says
 
 **Activation rate** = activated accounts ÷ trial accounts.
 
@@ -88,7 +84,7 @@ The service costs here are illustrative direct serving costs, not audited gross 
 
 **Important caveat:** The figures are from one constructed cohort. Without acquisition cost, support effort outside the direct serving estimate, long term churn, segment demand and confidence intervals, they do not justify a durable company strategy.
 
-## 5. The product journey behind these metrics
+### The product journey behind these metrics
 
 An organization starts a trial, connects relevant business data or selects documents, completes its first useful analysis, returns for another task, invites colleagues, and possibly converts to a paid account.
 
@@ -103,7 +99,7 @@ An organization starts a trial, connects relevant business data or selects docum
 
 The sample does not include step by step dropoffs. Therefore it cannot establish that onboarding is the root cause. This is precisely the data the first experiment must collect.
 
-## 6. Root cause analysis, avoiding invented explanations
+### Root cause analysis, avoiding invented explanations
 
 The symptom is uneven outcomes across segments. The cause is unknown because the provided data describes results, not why they happened.
 
@@ -118,7 +114,7 @@ The symptom is uneven outcomes across segments. The cause is unknown because the
 
 **RCA decision:** It is valid to say the observed synthetic FP&A cohort currently has higher contribution. It is not valid to say that its onboarding is broken or that a new feature would increase paid accounts by a particular percentage.
 
-## 7. Choose between solutions
+### Choose between solutions
 
 **Option A:** Improve self service activation for individual researchers. This reaches more trials but starts from lower value per paying account and weaker observed retention.
 
@@ -128,7 +124,7 @@ The symptom is uneven outcomes across segments. The cause is unknown because the
 
 **Decision:** Investigate Option B first through actual user observation, not a full roadmap commitment. Preserve Option C as the parallel discovery opportunity. Do not decide from a simple weighted score that hides uncertainty.
 
-## 8. Product proposal: an evidence based segment decision workspace
+### Product proposal: an evidence based segment decision workspace
 
 The proposed tool is a simple internal product analytics view, not a customer facing feature by default.
 
@@ -138,7 +134,7 @@ The PM uses this view to select a specific user problem for research. The select
 
 **Minimal workflow:** Open cohort → verify data and definitions → identify commercial and product opportunity → review interviews and error logs → choose the experiment → record decision → compare results and guardrails.
 
-## 9. PRD and data requirements
+### PRD and data requirements
 
 | Requirement | Acceptance check |
 | --- | --- |
@@ -156,7 +152,7 @@ Data sources: product events, account registry, onboarding logs, task success ev
 
 The SQL logic should group by unique account\_id and trial\_cohort, validate one segment per account, and join payments with event data at the account level. Do not sum a duplicated MRR row after joining it to many task events.
 
-## 10. North Star, KPIs and guardrails
+### North Star, KPIs and guardrails
 
 | Metric | Definition | Example or baseline |
 | --- | --- | --- |
@@ -170,7 +166,7 @@ The SQL logic should group by unique account\_id and trial\_cohort, validate one
 
 A primary success metric for an onboarding experiment should be a user value event, not the number of new signups. Commercial conversion is an important lagging measure, but it may take longer to observe.
 
-## 11. What if the experiment improves conversion?
+### What if the experiment improves conversion?
 
 Assume a new future FP&A cohort of 80 eligible trials. Current constructed trial to paid conversion is 22.5%, meaning 18 paying accounts. A hypothetical increase to 27.5% would mean 22 paying accounts, an additional four.
 
@@ -182,7 +178,7 @@ If those four accounts stayed and economics did not change for twelve months, th
 
 **Better question:** What is the minimum credible, sustained gain needed to justify the engineering cost while preserving accuracy and user satisfaction?
 
-## 12. Experiment and decision rule
+### Experiment and decision rule
 
 First, observe five to eight FP&A trial users attempting their first valid connected report. Record successful connection, first report readiness, obstacles, time, errors and actual user statements. Use the results to choose only one intervention.
 
@@ -192,7 +188,7 @@ Check event logging, randomization balance, sample size and exposure. Do not cla
 
 **Decision rule:** Roll out only if the change produces a meaningful improvement in verified first value without harming correctness or support burden. If interviews show no onboarding problem, pivot to the best supported cause rather than building a feature.
 
-## 13. Business impact and final recommendation
+### Business impact and final recommendation
 
 **Completed analysis:** A correctly denominated segment comparison, revenue and direct service contribution calculations, alternative explanations, a sensitivity calculation, measurable requirements and an experiment plan.
 
