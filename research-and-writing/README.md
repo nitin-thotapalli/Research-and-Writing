@@ -8,11 +8,11 @@ Each article is organized for a quick read of the **case → recommendation → 
 
 ## Research articles
 
-| ID | Research problem | Article |
-| --- | --- | --- |
-| P01 | Improve trust, reliability and accuracy of AI agentic systems | [Read the article](improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md) |
-| P02 | Unifying fragmented data across systems: from disconnected events to one operational view | [Read the article](unifying-fragmented-data-across-systems.md) |
-| P03 | Reduce repetitive work in analytics and reporting | [Read the article](reduce-repetitive-work-in-analytics-and-reporting.md) |
+| ID | Research problem | Article | What it explores |
+| --- | --- | --- | --- |
+| P01 | Improve trust, reliability and accuracy of AI agentic systems | [Read the article](improve-trust-reliability-and-accuracy-of-ai-agentic-systems.md) | Evidence-backed agent answers, deterministic checks and human review |
+| P02 | Unifying fragmented data across systems: from disconnected events to one operational view | [Read the article](unifying-fragmented-data-across-systems.md) | Identity mapping, event normalization, conflicts and a unified data layer |
+| P03 | Reduce repetitive work in analytics and reporting | [Read the article](reduce-repetitive-work-in-analytics-and-reporting.md) | Controlled workflow automation with reconciliation and human approval |
 
 ## Scope and evidence
 
