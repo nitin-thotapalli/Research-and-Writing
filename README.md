@@ -15,15 +15,13 @@ The portfolio has two reading spaces:
 
 ### [Improving Repeat FD Investments: Root Cause Analysis](case-studies/improving-repeat-fd-investments.md)
 
-A practice Product Management case about why customers who completed their first fixed deposit might not invest again. It follows the problem from defining the repeat investment rate through customer groups, internal and external causes, two customer scenarios, a 5 Whys exercise, assumed findings and a small action plan.
+A practice Product Management case about why customers who completed their first fixed deposit might not invest again. It follows the problem from defining the repeat investment rate through customer groups, possible causes, two scenarios, a 5 Whys exercise, a proposed solution and its tradeoffs.
 
 **[Read the case study](case-studies/improving-repeat-fd-investments.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
-## Scope and evidence
+## About this case
 
-This is an independent learning exercise, **not a report of real Stable Money customer behavior**. The customer counts, team feedback and findings are fictional assumptions used to show the problem-solving approach. Any proposed solution or improvement is something to test, not a measured business outcome.
-
-The case study is available here as a complete Markdown article. Screenshots from the Whimsical diagram can be added to it later.
+This case study uses sample data and customer scenarios to explain the thinking behind a proposed product change. The full report is available as a Markdown article, with a link to the visual mind map.
 
 ## Related work
 

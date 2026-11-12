@@ -10,8 +10,6 @@ Product case studies that show how I approach a problem, ask questions, work thr
 | --- | --- |
 | [Improving Repeat FD Investments: Root Cause Analysis](improving-repeat-fd-investments.md) | Why existing FD customers may not invest again, how to identify the most relevant customer group, and how to test an improved reinvestment experience. |
 
-This is a **practice case study**. Customer numbers, research findings, and conclusions are illustrative assumptions, not verified Stable Money data.
-
 [Explore the full Whimsical mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)
 
 [Back to the repository overview](../README.md)
