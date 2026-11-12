@@ -1,227 +1,266 @@
 # Improving Repeat FD Investments: Root Cause Analysis
 
-*A product management practice case about understanding why customers do not make a second fixed deposit (FD) investment.*
-
-**[View the complete mind map in Whimsical](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
-
-> **About this case:** This is a learning exercise, not an analysis of actual Stable Money customer data. All customer counts, percentages, team responses and findings below are made up to show how I would approach the problem. The recommendation is a hypothesis to test, not a proven result.
+*Product Management Case Study | Fixed Deposits*
 
 ## 1. The situation
 
 Imagine a WealthTech platform that helps people invest in FDs, bonds and other financial products. Customers are coming to the platform and making their first investment. But relatively few return to make another investment.
 
-**The question:** How can we increase repeat investments?
+**The question: How can we increase repeat investments?**
 
-For this case, I am looking at **FDs only**, and at **people who have already completed their first FD investment**. Getting someone to sign up or complete their first KYC is a different problem.
+<!-- IMAGE: Add a screenshot of the case scenario here, e.g. images/01-case-and-goal.png -->
 
-My aim is not to guess a feature immediately. First, I want to understand whether a customer *needs* another FD, whether they *want* one, and what is stopping them if they do.
+## 2. Proposed solution
 
-<!-- IMAGE: Add a screenshot of the case scenario and goal here, e.g. images/01-case-and-goal.png -->
+**Make it easier for customers who want to reinvest to move from a matured FD to their next suitable FD investment.**
 
-## 2. Goal and starting assumptions
+The proposed experience has three parts:
 
-**Goal:** Increase the share of first-time FD investors who successfully make another FD investment within 12 months. We will choose a realistic improvement target once we understand the problem.
+1. **Before maturity:** Clearly communicate when the FD will mature, the expected payout and what choices the customer has.
+2. **At maturity:** Show a few relevant FD options with understandable rates, tenures, bank names and important terms.
+3. **When the customer decides to reinvest:** Provide a simple path to complete the next FD without unnecessary repeated steps.
 
-The following figures are **illustrative assumptions**:
+This is **not** a recommendation to encourage everyone to invest again. Some people need their money, have already met their goal or prefer other investments. The intended customer is someone who **has funds available, wants another FD and may be getting stuck along the way**.
 
-| Starting point | Assumed number |
-| --- | ---: |
-| Registered users across the platform | 10,00,000 |
-| People who made a first investment in any product | 1,00,000 |
-| First-time FD investors (60% of those investors) | 60,000 |
-| First-time bond investors (30%) | 30,000 |
-| First-time investors in other products (10%) | 10,000 |
-| FD investors who made another FD within 12 months | 6,000 |
-| FD investors with no second FD recorded within 12 months | 54,000 |
-| **Assumed 12-month repeat FD investment rate** | **10%** |
+**Our decision:** Focus the proposed improvement on customers aged 30 to 50 whose FDs have matured. This choice comes from the reasoning below, not from verified company research.
 
-The 54,000 people are **not automatically inactive or unhappy**. Their first FD may still be running, they may have reached their savings goal, or they may prefer something else.
+> **Evidence note:** This is an independent case study. The company figures, customer behaviors and team findings below are **illustrative assumptions**, not actual Stable Money data or measured product results. The solution is a proposal to validate, not a claim of proven impact.
 
-**How I would measure the rate**
+## 3. How we arrived at this recommendation
 
-**12-month repeat investment rate = (Number of first-time FD investors who complete at least one more FD within 12 months ÷ Number of first-time FD investors in that same group) × 100**
+The analysis follows a simple sequence:
 
-Using our assumed figures: **6,000 ÷ 60,000 × 100 = 10%.**
+**Define the problem → Understand the customers → Look at possible reasons → Study two scenarios → Ask other teams → Make reasonable assumptions → Choose one problem → Test a solution.**
 
-Only include customers who have had a **full 12 months since their first FD** when calculating this completed 12-month rate. Count each person only once, even if they invested several more times. For this exercise, another FD before the first matures *or* a successful renewal at maturity counts as a repeat investment. In a real product, I would also check how automatic renewals are recorded.
+The purpose is to avoid building features before knowing **whether a customer has a reason to invest again and what is stopping them**.
 
-A second measure will matter later: **of customers whose FD has matured, how many invest again within 30 days?** That answers a different question from the overall 12-month rate.
+The complete visual breakdown is available in the [Whimsical mind map](https://whimsical.com/X6jYEXqktCqQYioPWoXxC).
 
-<!-- IMAGE: Add your goal, assumptions and repeat investment formula here, e.g. images/02-goal-and-assumptions.png -->
+## 4. Goal and starting assumptions
 
-## 3. Understanding the problem
+### What are we trying to improve?
 
-Before looking for causes, these are the questions I would ask:
+**Goal:** Increase the percentage of existing FD investors who complete at least one more FD investment within 12 months of their first investment.
 
-| Question | Why I am asking it |
+We begin with an **assumed rate of 10%**. The actual target should be set only after checking the real starting rate and how much improvement is realistically possible.
+
+Why use a 12-month window? FD investments can remain active for several months. A short period could incorrectly label customers as lost when they simply have no reason to invest again yet. Twelve months is a **working choice for this case**, not proof that it is the best period for every FD tenure.
+
+### Numbers used in this exercise
+
+| Assumption | Example number | Why we use it |
+| --- | ---: | --- |
+| Total registered users | 10,00,000 | To picture the size of the platform, not as the repeat-rate denominator. |
+| People who completed a first investment in any product | 1,00,000 | To narrow the analysis to customers who have invested at least once. |
+| First-time FD investors | 60,000 | Our focus; assumed to be 60% of first-time investors. |
+| First-time bond investors | 30,000 | Shows the platform has other products, which are outside this case. |
+| First-time investors in other products | 10,000 | Completes our illustrative product split. |
+| FD investors who make another FD within 12 months | 6,000 | The assumed number of repeat FD investors. |
+| FD investors with no recorded second FD within 12 months | 54,000 | People to understand, **not automatically inactive customers**. |
+
+These product groups are assumed to be separate for this simple example. In a real analysis, someone might invest in more than one product, so the data would need to account for that.
+
+### How is repeat investment measured?
+
+**12-month repeat FD investment rate = (Customers who complete another FD within 12 months ÷ Customers who completed their first FD) × 100**
+
+Using our assumed figures:
+
+**(6,000 ÷ 60,000) × 100 = 10%**
+
+For a fair comparison, count each customer once and include only first-time FD investors who have had a **full 12 months** to invest again. Another FD before maturity and reinvestment at maturity both count in this practice case, but should also be studied separately.
+
+Later, because we focus on maturity, we will also measure the **share of customers who reinvest within 30 days after their FD matures**. This is a more direct way to test the proposed solution.
+
+<!-- IMAGE: Add the goal, assumptions and formula here, e.g. images/02-goal-and-assumptions.png -->
+
+## 5. Understanding the problem
+
+Before looking for a root cause, we need answers to seven questions.
+
+| Question | Why it matters |
 | --- | --- |
-| **How are we defining repeat investments?** Another FD before maturity, a renewal at maturity, or both? | These are different customer decisions. |
-| **What is our current repeat investment rate?** How is it calculated, and over what period? | We need a fair starting point. |
-| **Why is the current rate a problem?** Did it fall compared with the previous 12 months, or has it always been near 10%? | We should not assume 10% is bad without context. |
-| **What do we want to improve, and by when?** More people investing again, more money invested, or both? | This tells us what success means. |
-| **What do people do after their first investment?** Do they return, view FDs, start another investment, or stop midway? | This helps us see where interest may be lost. |
-| **How long ago was their first FD?** Last week, three months ago, or a year ago? | Customers need a reasonable amount of time to invest again. |
-| **Has their first FD matured?** If yes, did they reinvest or take the money out? | The need to reinvest can be very different at maturity. |
+| **What counts as investing again?** Another FD while the first is running, renewal at maturity, or both? | These are different decisions and may have different reasons behind them. |
+| **What is the current repeat investment rate?** How was it calculated, for whom and over what period? | We must know what the 10% actually represents. |
+| **Why is the rate considered a problem?** Has it fallen compared with previous periods, or has it always been similar? | A low number alone does not prove that something has gone wrong. |
+| **What outcome do we want, and by when?** More customers investing again, more total money invested, or both? | We need a clear business goal rather than a vague demand for more activity. |
+| **What do customers do after their first FD?** Return to the app, look at another FD, start investing, or stop midway? | This shows where interested customers might be getting stuck. |
+| **How long has it been since their first FD?** One week, three months or a year? | Someone who invested recently may not have had a meaningful chance to invest again. |
+| **Has their first FD matured?** If so, did they reinvest or withdraw? | Maturity is a natural time when the customer has a fresh decision to make. |
 
-**A useful distinction:** Someone with an active 12-month FD who has not invested again is not the same as someone whose FD matured yesterday and who is looking for a new one.
+The most important lesson here is that **not making a second FD is not the same as leaving the platform**. A customer with a 12-month FD may be satisfied and waiting for maturity.
 
 <!-- IMAGE: Add the Understanding the Problem mind map here, e.g. images/03-understanding-the-problem.png -->
 
-## 4. Who are the customers?
+## 6. Who are we solving this for?
 
-To make the exercise manageable, I grouped customers by age. These are **starting assumptions, not facts about people's risk appetite**.
+For the exercise, we divided users into three broad age groups.
 
-| Group | Assumed behavior for this case | Priority |
+| Group | Working assumption | Priority |
 | --- | --- | --- |
-| **Group 1: Ages 18 to 30** | Lower savings available; may be careful with risk and invest smaller amounts. | 3 |
-| **Group 2: Ages 30 to 50** | Balancing safety and returns, with family goals, expenses and some investable savings. | **1** |
-| **Group 3: Ages 60+** | May have more capital; could care about regular income, access to money and bank trust. Risk preference needs to be checked, not assumed. | 2 |
+| **Group 1: Ages 18 to 30** | May have less spare money and invest smaller amounts. | 3 |
+| **Group 2: Ages 30 to 50** | May balance family expenses, savings goals, safety and returns; some may have money available for another investment. | **1** |
+| **Group 3: Ages 60+** | May have larger savings and care about income, bank trust or easy access to funds. Risk appetite varies by person. | 2 |
 
-**I chose Group 2 (30 to 50) for the exercise**, because it gives us a useful mix of savings needs, family goals and possible repeat investment opportunities. The priority is not backed by real data yet.
+These are **hypotheses for discussion, not facts about age groups**. They do not cover every age or guarantee how someone behaves. Real customer grouping would also use FD amount, tenure, savings needs, investment goals and app activity.
 
-In actual research, I would make the ages non-overlapping, include the missing 51 to 59 group, and look beyond age at FD amount, tenure, investment goal and whether the customer has money available.
+**Why select Group 2?** For this case, we assume some customers in this group have both a reason and the ability to invest again. That makes it useful for investigating why a second investment is not happening. This priority would need to be checked with real data.
 
-<!-- IMAGE: Add the customer groups mind map here, e.g. images/04-user-groups.png -->
+<!-- IMAGE: Add the customer groups diagram here, e.g. images/04-user-groups.png -->
 
-## 5. What might stop someone from investing again?
+## 7. What could stop a customer from investing again?
 
-I started by separating reasons **outside the app** from reasons **inside the app**.
+We separated possible causes into two broad categories.
 
 | Outside the app | Inside the app |
 | --- | --- |
-| They need the money for family expenses or an emergency. | They did not notice their FD was about to mature. |
-| Another bank offers a better rate or a more suitable FD. | They cannot easily find an FD that fits their needs. |
-| Interest rates, taxes, policy or the economy have changed. | The investment steps are confusing or have KYC or payment issues. |
-| They prefer another instrument, such as bonds or equities. | They cannot clearly see what to do after receiving their FD payout. |
+| The customer needs money for family expenses or an emergency. | They do not notice that their FD is about to mature. |
+| Another bank has a better rate, tenure or offer. | They cannot easily find another FD that suits their needs. |
+| Rates, taxes, policies or economic conditions have changed. | Investment steps are confusing, repetitive or fail during payment or verification. |
+| They want to put savings into bonds, equities or another product. | The next step is unclear after the FD is paid out. |
 
-This matters because not every reason can be solved with a new app feature. We should not persuade someone to lock away money they need for an emergency.
+**Why make this distinction?** Some reasons reflect a customer's genuine financial decision. Others may be issues with the product experience that we can improve.
 
-<!-- IMAGE: Add the internal and external causes diagram here, e.g. images/05-possible-causes.png -->
+The aim is not to eliminate every reason for not investing. It is to identify **where the platform is losing customers who actually want a second FD**.
 
-## 6. Scenario 1: The first FD is still running
+<!-- IMAGE: Add the internal and external causes mind map here, e.g. images/05-possible-causes.png -->
 
-Imagine a customer aged 30 to 50 who has invested once but has not opened another FD.
+## 8. Scenario 1: The first FD is still running
 
-**A possible chain of reasoning:**
+Consider a customer from Group 2 who completed a first FD but has not invested again.
 
-1. **Why haven't they invested again?** They have no spare money set aside for another FD.
-2. **Why?** They put their planned savings into the first FD.
-3. **Why does that matter?** They may only invest again when they save more money or when their first FD matures.
+**Our line of questioning:**
 
-Other possibilities are worth checking: perhaps they chose bonds or equities, or another provider offered better rates, marketing or a better experience.
+1. **Why have they not invested again?** They may not have any extra savings set aside for another FD.
+2. **Why might that be?** They may have already put their planned savings into the first FD.
+3. **What does that mean?** They may invest again only when they save more money or when their current FD matures.
 
-**What I take from this:** No second investment does not always mean the customer is unhappy. If they have no money available, making the app more attractive will not create more savings. I would not prioritize pushing another FD to this customer.
+There are other possibilities: a different financial product, a better offer from another provider, or a different savings goal.
+
+**What this scenario tells us:** The product may be working perfectly well, but the customer simply does not need another FD right now.
+
+**Decision:** Do not prioritize pushing a second FD to customers who have no spare money or no investment need. This could create pressure without solving a real customer problem.
 
 <!-- IMAGE: Add Scenario 1 here, e.g. images/06-scenario-1.png -->
 
-## 7. Scenario 2: The FD has matured, but no new FD was made
+## 9. Scenario 2: The FD has matured, but no new FD was made
 
-Now imagine a customer aged 30 to 50 whose FD has matured. **For this scenario, assume they have money available and want to invest in another FD**, yet do not complete one.
+Now consider a different Group 2 customer. Their FD has matured. For this exercise, **assume they have money available and want another FD**, but have not completed one.
 
-I would first ask three simple questions:
+We start with three simple questions:
 
-- **Did they come back to the app after maturity?** If not, perhaps they missed a reminder.
-- **Why didn't they choose another FD?** Perhaps the rates, bank or tenure did not fit their needs.
-- **Did they start another investment but stop?** Perhaps KYC, payment or confusing steps got in the way.
+1. **Did they return to the app after maturity?** If not, perhaps they never noticed a useful reminder or next step.
+2. **Why did they not choose another FD?** Perhaps the rate, tenure, bank or available choices did not fit their needs.
+3. **Did they start another FD but stop?** Perhaps the steps were confusing or there was a KYC or payment issue.
 
-### Following one possible cause with 5 Whys
+### Going deeper with 5 Whys
 
-This is *one possible explanation*, not a confirmed chain of events:
+To explore one *possible* explanation, we follow the unclear-next-step path.
 
-| Step | What might be happening? |
+| Question | Working explanation |
 | --- | --- |
-| **Why 1: Why didn't they reinvest?** | They took the matured FD money out instead. |
-| **Why 2: Why did they take it out?** | They did not explore another FD on the platform. |
-| **Why 3: Why didn't they explore one?** | They were unsure what to do after maturity. |
-| **Why 4: Why were they unsure?** | They saw the payout but no clear next FD choice. |
-| **Why 5: Why was there no clear next step?** | The experience appears to end when the first FD matures, instead of helping customers decide what comes next. |
+| **Why 1: Why was there no second FD?** | The customer took their matured FD money out without making another investment. |
+| **Why 2: Why did they leave without another FD?** | They did not explore another FD on our platform. |
+| **Why 3: Why did they not explore one?** | They were unsure what to do next after maturity. |
+| **Why 4: Why were they unsure?** | They could see the payout but not a clear next investment choice. |
+| **Why 5: Why was there no clear next step?** | The experience may be built mainly around making the first FD rather than helping with the decision after maturity. |
 
-**Possible root cause:** The path from FD maturity to the next suitable investment is not clear enough.
+**Possible root cause:** A customer who wants another FD may not have a clear, easy route from maturity to their next investment.
 
-We would still need to rule out better rates elsewhere, the customer needing cash, or a genuine lack of investment options before accepting this explanation.
+This chain is a **hypothesis**, not a confirmed customer explanation. Better rates elsewhere, trust concerns and the need for cash must still be considered.
 
 <!-- IMAGE: Add Scenario 2 and its 5 Whys here, e.g. images/07-scenario-2.png -->
 
-## 8. What I would ask other teams
+## 10. What we would ask other teams
 
-Before choosing a solution, I would ask for a small amount of focused evidence.
+Before recommending changes, we would request a few specific answers.
 
-| Team | Questions I would ask |
-| --- | --- |
-| **Analytics** | How many people return after their first FD? How many with matured FDs invest again within 30 days? Where do interested customers stop: viewing, starting or paying? |
-| **Marketing** | Did customers receive and notice the maturity reminder? Are we explaining the available FD choices clearly? |
-| **Sales and Partnerships** | Are competing banks offering better rates or FD choices? Are customers asking for products we do not offer? |
-| **Customer Support** | What do customers say when they do not reinvest? Are there complaints about payout, trust, KYC or payment? |
-| **Product and Operations** | What does the customer see before and after maturity? Is starting a second FD easy and reliable? |
+| Team | Questions | What the answers help us decide |
+| --- | --- | --- |
+| **Analytics** | How many customers return after maturity? How many view an FD, start investing and finish? How many reinvest within 30 days? | Whether the gap is in returning, choosing an FD or completing the investment. |
+| **Marketing** | Do customers receive and notice maturity reminders? Are FD options explained clearly? | Whether customers know a new decision is available. |
+| **Sales and Partnerships** | Are competitors offering more attractive rates or suitable FDs? Are there products customers request but cannot find? | Whether the platform's FD choices are competitive and relevant. |
+| **Customer Support** | Why do customers say they did not invest again? Do they mention rates, trust, payout, KYC or payment problems? | What customers themselves say is stopping them. |
+| **Product and Operations** | What does the customer see before and after maturity? Can they complete another FD without unnecessary steps or errors? | Whether the existing journey makes the second investment difficult. |
 
-The purpose is to **check which explanation fits the customer**, rather than collecting data just because it is available.
+The goal is to get **just enough information to choose which problem is worth solving**, rather than collecting every possible metric.
 
-<!-- IMAGE: Add the questions for other teams here, e.g. images/08-team-questions.png -->
+<!-- IMAGE: Add the team questions diagram here, e.g. images/08-team-questions.png -->
 
-## 9. Let's assume the teams come back with these answers
+## 11. Illustrative findings and our decision
 
-The numbers below are **made up for this practice case**. They are not survey results or company analytics.
+For this case study, let's assume the teams return the following **fictional findings**.
 
-**Scenario 1: First FD still running**
+### Scenario 1: First FD still running
 
-Out of 100 customers who did not invest again, **70 say they have no spare savings**. This suggests that many may simply not be ready for a second FD, even if the app works well.
+Out of 100 customers who have not invested again, **70 say they have no spare savings**.
 
-**Scenario 2: FD has matured**
+**Interpretation:** For many of these customers, another FD may not be a relevant next action. Product reminders alone are unlikely to change that.
 
-| Out of 100 customers whose FDs matured | People |
+### Scenario 2: FD has matured
+
+| What happened among 100 customers whose FDs matured? | Customers |
 | --- | ---: |
 | Made another FD investment | 40 |
 | Did not reinvest because they needed cash or chose another bank | 35 |
 | Wanted another FD but could not find a clear next step | 25 |
 | **Total** | **100** |
 
-This gives us a reason to investigate the **25 customers who wanted to invest but got stuck**. It does **not** mean a new feature will automatically convert all 25.
+These 100 customers are a **separate illustrative group** from the 100 in Scenario 1. This is not observed company data, and these figures cannot establish a cause by themselves.
 
-**My choice:** Focus on **Group 2, Scenario 2**: customers aged 30 to 50, with matured FDs, available money and an intention to reinvest.
+**Our decision:** Focus on the **25 customers who wanted another FD but struggled to find the next step**.
 
-Why? They already have a reason to invest. If the next step is genuinely unclear, that is something the product team may be able to improve.
+**Why this group?** They already have investment intent. If their problem is genuinely an unclear experience, the product team may be able to remove that obstacle. We would still verify their behavior and speak with customers before building anything.
 
-If the evidence instead points mainly to poor rates or unsuitable FD choices, I would change this priority.
+If customers instead tell us that the main issue is uncompetitive rates, then improving the screen alone will not solve the problem. We would reconsider the choice.
 
-<!-- IMAGE: Add the assumed findings and chosen group here, e.g. images/09-assumed-findings.png -->
+<!-- IMAGE: Add the hypothetical findings and chosen group here, e.g. images/09-assumed-findings.png -->
 
-## 10. What I would do next
+## 12. Action plan
 
-**Working recommendation:** Make it easier for customers who *want* another FD to understand their matured investment, see relevant choices and complete the next investment.
+Our proposed solution is a clearer FD maturity and reinvestment journey for customers who want another suitable FD.
 
-| When | Action | Why it could help |
+| Step | Proposed action | Expected benefit |
 | --- | --- | --- |
-| **Before maturity** | Clearly show the payout date, expected amount and available next steps. | Customers know when a decision is coming. |
-| **At maturity** | Show a few suitable FD options, including bank, rate, tenure and important terms. | Customers can decide whether another FD fits their needs. |
-| **When investing again** | Make the next FD easy to start and complete, without repeating unnecessary steps. | Reduce avoidable confusion and abandonment. |
-| **Communication** | Start with a clear in-app message; use optional push or email reminders. | Help customers find the information at the right time. |
+| **Before maturity** | Show maturity date, expected payout and the choices available after maturity. | Customers know when they need to make a decision. |
+| **At maturity** | Present a few suitable FDs with rates, tenure, bank and key terms. | Customers can compare options without starting their search from scratch. |
+| **During reinvestment** | Make it easy to start another FD, reducing repeated or unnecessary steps where possible. | Fewer interested customers abandon the process. |
+| **Communication** | Use clear messages in the app, with optional push notifications or email reminders. | Reach customers when the information is useful, without excessive messaging. |
 
-I would always leave the option to **withdraw or do nothing**. Reinvesting should be the customer's choice.
+Customers should always be able to withdraw their money or choose not to reinvest. The aim is to help them make an informed decision, not to push an unsuitable product.
 
-### How I would test the idea
+### How we would test the solution
 
-Try the improved experience with a small group of eligible customers and compare it with customers using the current experience.
+Start with a small group of eligible customers whose FDs are approaching maturity.
 
-- **Main measure:** Percentage of customers who make another FD within **30 days of maturity**.
-- **Also check:** How many view an FD, start investing and finish; support complaints; payment failures; whether customers understood the terms and chose a suitable product.
-- **Longer term:** Keep tracking the overall **12-month repeat FD investment rate** separately.
+- **Group A:** Continues with the current experience.
+- **Group B:** Receives the clearer maturity information and simpler route to another FD.
+- **Main measure:** Percentage of eligible customers who complete a new FD within **30 days after maturity**.
+- **Additional checks:** How many view options, start and finish an investment; complaints, payment failures and whether people understood the terms.
+- **Longer-term measure:** Track the overall **12-month repeat FD investment rate** separately.
 
-If more customers reinvest without worse customer outcomes, expand the experience. If the results do not improve, go back to the reasons: perhaps customers prefer better rates elsewhere, do not trust an issuer, or want a different way to save.
+Only expand the improved experience if it helps customers make suitable investments without causing new problems.
+
+### What if the test does not work?
+
+Return to the evidence. Customers may want better rates, have trust concerns, prefer another bank or need access to their money. If the reasons are different from our original assumption, **change the approach rather than sending more reminders**.
 
 <!-- IMAGE: Add the Actionables mind map here, e.g. images/10-action-plan.png -->
 
-## 11. Final takeaway
+## 13. Conclusion
 
-**My working root cause is an unclear journey from a matured FD to the next investment for customers who already want to reinvest.** It is a hypothesis supported only by the made-up findings in this case, not a proven diagnosis.
+**Our working root cause is an unclear path to a second FD for some customers who have reached maturity and already want to reinvest.**
 
-The lesson from this exercise is simple: **do not treat every customer who hasn't invested again as a lost customer.** First find out whether they have a reason and the means to invest. Then look at where those willing customers stop, and fix that specific problem.
+That conclusion is supported by the **hypothetical conditions of this case study**, not by verified customer research. It would need validation before it becomes a real product decision.
 
-The value of this case is the **approach to reaching a decision**, not claiming to have found the only correct answer.
+The important lesson is the approach: start with a broad business concern, separate customers who do not need another FD from those who do, identify the point where motivated customers get stuck, and test a small improvement before expanding it.
+
+**A better repeat investment rate should come from helping customers make the right next decision, not simply getting them to return to the app more often.**
 
 ---
 
-**Complete visual analysis:** [Stable Money: Improving Repeat FD Investments, Root Cause Analysis (Whimsical)](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)
+**[Explore the complete RCA mind map in Whimsical](https://whimsical.com/X6jYEXqktCqQYioPWoXxC)**
 
-**Images:** I have left an image placeholder in each section so screenshots from the Whimsical board can be added later. Save the pictures in a case-studies/images folder and replace each placeholder comment with a normal Markdown image link.
+*Images can be added under `case-studies/images/` by replacing each image comment with a Markdown image link.*
 
-[Back to the repository overview](../README.md)
+[Back to Case Studies](README.md) · [Repository overview](../README.md)
