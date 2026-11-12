@@ -168,5 +168,3 @@ For a controlled test, generate six months of synthetic P&L input with missing m
 **What is solved:** The financial variance report, exact profit bridge, a feasible division between automation and human work, controls and measurable product requirements.
 
 **What remains unknown:** Real time saved, actual source defects, which stage is the biggest operational cost, and whether current commercial software already handles it adequately.
-
-[← Research & Writing](README.md)
