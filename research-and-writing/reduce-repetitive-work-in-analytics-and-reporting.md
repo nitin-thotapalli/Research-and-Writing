@@ -1,6 +1,6 @@
 # Reduce repetitive work in analytics and reporting
 
-*P04 · Original Notion problem and linked case study*
+*P04 · Product Management & Analytics Research*
 
 ## Problem overview
 
@@ -168,17 +168,5 @@ For a controlled test, generate six months of synthetic P&L input with missing m
 **What is solved:** The financial variance report, exact profit bridge, a feasible division between automation and human work, controls and measurable product requirements.
 
 **What remains unknown:** Real time saved, actual source defects, which stage is the biggest operational cost, and whether current commercial software already handles it adequately.
-
-## Sources and method
-
-[Whatfix reporting improvement customer story](https://www.drivetrain.ai/customer-stories/whatfix-automated-financial-reporting-drivetrain)
-
-[FarEye manual RevOps reporting problem](https://www.drivetrain.ai/customer-stories/fareye-shrinks-ad-hoc-reporting-times-eliminates-costly-manual-revops-workflows)
-
-[Drivetrain current financial reporting offering](https://www.drivetrain.ai/use-cases/financial-reporting)
-
----
-
-**Original Notion case study:** https://app.notion.com/p/40fe7cf19bdd8199861ed49979d2e7a2
 
 [← Research & Writing](README.md)
