@@ -8,22 +8,22 @@ The portfolio has two reading spaces:
 
 | | Section | What you'll find |
 | --- | --- | --- |
-| 🔍 | **[Case Studies](case-studies/README.md)** | **Space for solving problems.** Specific problems, evidence, analysis, product decisions, evaluation and learnings |
+| 🔍 | **[Case Studies](case-studies/README.md)** | **Space for solving problems.** The question, assumptions, root cause analysis, decisions and next steps |
 | ✍️ | **[Research & Writing](research-and-writing/README.md)** | **Space for exploring ideas.** Independent research notes, articles, hypotheses and essays |
 
-## Featured case studies
+## Featured case study
 
-1. **[Improve trust, reliability and accuracy of AI agentic systems](case-studies/ai-agent-reliability.md)** — A metric-contract and verification exercise for AI-generated financial answers.
-2. **[Connect fragmented business data to make analytics more reliable](case-studies/financial-data-reliability.md)** — Reconciling financial definitions across reporting sources.
-3. **[Help users find and verify useful business information faster](case-studies/business-information-retrieval.md)** — Improving evidence retrieval for financial research questions.
-4. **[Reduce repetitive work in analytics and reporting](case-studies/analytics-reporting-automation.md)** — A workflow automation and verification case.
-5. **[Improve business and financial decisions using clearer analytics](case-studies/product-analytics-prioritization.md)** — Cohort economics and evidence-led product prioritization.
+### [Improving Repeat FD Investments: Root Cause Analysis](case-studies/README.md)
+
+A practice Product Management case about why customers who completed their first fixed deposit might not invest again. It follows the problem from defining the repeat investment rate through customer groups, internal and external causes, two customer scenarios, a 5 Whys exercise, assumed findings and a small action plan.
+
+**[Read the case study](case-studies/README.md)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
 ## Scope and evidence
 
-The case studies include independent analytical exercises and synthetic scenarios. They **do not claim actual product deployments, customer validation or measured uplift** unless the individual study explicitly documents such evidence. Real industry/customer examples and original analytical proposals are distinguished in the documents.
+This is an independent learning exercise, **not a report of real Stable Money customer behavior**. The customer counts, team feedback and findings are fictional assumptions used to show the problem-solving approach. Any proposed solution or improvement is something to test, not a measured business outcome.
 
-Each Markdown article can be read directly on GitHub. The source documents were authored in Notion and transferred here to make the published work independently accessible and version-controlled. This repository is the public home for these case studies going forward.
+The case study is available here as a complete Markdown article. Screenshots from the Whimsical diagram can be added to it later.
 
 ## Related work
 
