@@ -34,7 +34,7 @@ The analysis follows a simple sequence:
 
 The purpose is to avoid building features before knowing **whether a customer has a reason to invest again and what is stopping them**.
 
-The complete visual breakdown is available in the [Whimsical mind map](https://whimsical.com/X6jYEXqktCqQYioPWoXxC).
+The complete visual breakdown is available in the [Whimsical mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC).
 
 ## 4. Goal and starting assumptions
 
@@ -259,7 +259,7 @@ The important lesson is the approach: start with a broad business concern, separ
 
 ---
 
-**[Explore the complete RCA mind map in Whimsical](https://whimsical.com/X6jYEXqktCqQYioPWoXxC)**
+**[Explore the complete RCA mind map in Whimsical](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
 
 *Images can be added under `case-studies/images/` by replacing each image comment with a Markdown image link.*
 
