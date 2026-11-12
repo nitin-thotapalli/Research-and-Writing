@@ -1,6 +1,6 @@
 # Improve trust, reliability and accuracy of AI agentic systems
 
-*P01 · Original Notion problem and linked case study*
+*P01 · Product Management & Analytics Research*
 
 ## Problem overview
 
@@ -166,9 +166,5 @@ The value mechanism is fewer wrong or manually reworked analytical answers. Pote
 **What remains unknown:** Actual customer error frequency, availability of approved metric definitions, performance of existing products, and user improvement in real workflows.
 
 **Portfolio evidence produced:** Defined user problem, independently checked formula, root cause analysis, solution alternatives, specific requirements, measurable evaluation and a conditional product decision.
-
----
-
-**Original Notion case study:** https://app.notion.com/p/40fe7cf19bdd813b8d1fd4d4fa104e74
 
 [← Research & Writing](README.md)
