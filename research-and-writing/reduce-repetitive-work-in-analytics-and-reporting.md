@@ -2,41 +2,37 @@
 
 *P04 · Product Management & Analytics Research*
 
-## Problem overview
+## 1. The case
 
-**Problem statement:** Analysts and managers repeat data collection, checking, summarizing and reporting tasks that take time away from judgment and action. Identify a repeated workflow and improve its speed and consistency without hiding errors or removing necessary review.
+**Problem statement:** FP&A analysts repeatedly collect budget and actual figures, reconcile spreadsheets, investigate exceptions, request explanations, and assemble management reports. The recurring work consumes time, but financial commentary still requires source evidence and accountable reviewers.
 
-**Primary user / persona:** Finance analyst, product analyst, research associate or manager with recurring reporting tasks.
+The worked case is a fictional B2B software company's October budget-versus-actual report. The decision is which reporting steps to automate without sacrificing accuracy or human judgement.
 
-**Core hypothesis:** Automating the repetitive, verifiable steps of one recurring analytical workflow while retaining exception review can save effort and preserve accuracy; the highest-cost step must be observed first.
+## 2. Proposed solution
 
-**Expected outcomes:** Less manual effort, fewer repeat errors, more timely reports, more time for analysis. Targets to measure, not promised savings.
+**Recommendation:** Automate approved-source imports, reconciliation, variance calculations, materiality checks, owner follow-ups, and draft report assembly—**but retain human review for business explanations and final approval**.
 
-**Success metrics:** Minutes per completed task; manual touch points; rework; exception detection; on-time delivery; output quality.
+Start with a controlled spreadsheet or existing FP&A configuration where practical. A dedicated exception-and-approval workspace is justified only after measuring recurring workload and error rates.
 
-**Evidence status:** Not specified
+## 3. Worked results and business impact
 
-**Research status:** Analysis
+**Worked result:** Budget operating profit is **$30,000**; actual operating profit is **$19,000**. The **$11,000 shortfall** reconciles to **$8,000 lower revenue**, **$2,000 higher cost of revenue**, and **$1,000 higher operating expenses**.
 
-**Target companies / research contexts:** Drivetrain · Cube Software · Abacum · Rogo (possible workflow contexts, not confirmed defects)
+**Potential business impact:** Reduce hands-on minutes and rework per **accurate, approved** report; improve timeliness and exception coverage. The profit bridge establishes *what changed*, not *why* revenue or costs moved.
+
+**Evidence boundary:** All financial amounts are fictional. No automation has been deployed, and time savings or causal business improvements have not been measured.
 
 ---
 
-## Detailed case study
+## 4. How we arrived at the recommendation
 
-> **Research decision: Automate the repeatable checks and arithmetic in a monthly budget versus actual report, while leaving the business explanation and approval to the analyst.**
->
-> User: FP&A analyst preparing a monthly management report. Public industry example: Whatfix's reporting workflow described in a Drivetrain customer story. The worked figures below are a **fictional October 2026 B2B software business**, not Whatfix or Drivetrain customer data.
->
-> **Status:** A complete financial variance example and a product workflow have been worked through. Actual analyst time savings, live deployment and operational causes have not been measured.
-
-## 1. Executive answer
+### Decision rationale
 
 The best first automation is narrow: connect the approved budget and closed accounting actuals, calculate and check every variance, identify material exceptions, collect a short explanation from the responsible owner and generate a report that finance can review.
 
 Do not ask an AI agent to invent why revenue fell or costs rose. Let calculations establish **what changed**, then ask responsible people and source systems to establish **why**.
 
-## 2. Evidence of the business need
+### Evidence of the business need
 
 The [Whatfix customer story published by Drivetrain](https://www.drivetrain.ai/customer-stories/whatfix-automated-financial-reporting-drivetrain) describes a finance team combining NetSuite and Salesforce data and consolidating budget inputs across different spreadsheets and versions. The vendor reports a reduction in monthly reporting from as much as seven days after close to one day following adoption of its product.
 
@@ -46,7 +42,7 @@ The [FarEye customer story](https://www.drivetrain.ai/customer-stories/fareye-sh
 
 Both examples show why the work matters. They also show existing products already automate much of this workflow. The product challenge is not to recreate a platform, but to identify one remaining repeated check or reporting decision worth improving.
 
-## 3. One concrete monthly report
+### One concrete monthly report
 
 Synthetic budget and actuals for October 2026, in USD.
 
@@ -66,7 +62,7 @@ Synthetic budget and actuals for October 2026, in USD.
 
 This bridge explains the **arithmetic contributions**, not the commercial causes.
 
-## 4. The immediate management report
+### The immediate management report
 
 **October operating profit missed budget by \$11,000.** Revenue came in 8% below plan, while the cost of revenue was 5% above plan and operating expenses were 3.33% higher than planned. Gross margin declined from 60.00% to 54.35%, while operating margin declined from 30.00% to 20.65%. Revenue accounts for \$8,000 of the profit shortfall; the two cost categories account for the remaining \$3,000.
 
@@ -74,7 +70,7 @@ This bridge explains the **arithmetic contributions**, not the commercial causes
 
 **Questions to request:** Revenue by customer and product; contracted bookings versus recognized revenue; customer count and churn; usage and cloud cost by service; actual invoice and payroll ledger; budget assumptions and approved exceptions.
 
-## 5. Root cause analysis of the recurring workload
+### Root cause analysis of the recurring workload
 
 The product problem is the analyst repeating reconciliation, arithmetic, owner followups and narrative preparation every month.
 
@@ -90,7 +86,7 @@ The product problem is the analyst repeating reconciliation, arithmetic, owner f
 
 The candidate cause of manual inefficiency is repeated collection and assembly across inconsistent sources. The publicly documented Whatfix case supports that pattern, but real analyst observations would be needed to rank which step costs the most in a new organization.
 
-## 6. Product proposal: Monthly variance review workspace
+### Product proposal: Monthly variance review workspace
 
 The user opens October and sees three panels.
 
@@ -100,13 +96,13 @@ The user opens October and sees three panels.
 
 **Panel C. Management note:** A draft summary reproduces checked arithmetic. Owner comments are attached to the relevant variance. Unsupported causal explanations remain labelled as questions, not written as findings. Final report is released only when the finance reviewer approves.
 
-### Proposed interaction
+#### Proposed interaction
 
 Open month → run controls → calculate P&L → identify material variances → assign owners → collect explanations and evidence → review corrections → lock and distribute.
 
 This describes a possible lightweight module or a configuration inside an existing FP&A platform, not a claim that Drivetrain lacks any of these features.
 
-## 7. Analytics logic and implementation
+### Analytics logic and implementation
 
 Required fields: period, business\_unit, account, revenue\_or\_cost\_type, approved\_budget\_version, budget\_amount, actual\_amount, source\_batch, close\_status, owner, explanation, exception\_status and approval\_version.
 
@@ -126,7 +122,7 @@ Profit bridge = revenue variance − cost of revenue variance − opex variance
 
 **SQL / reporting approach:** Aggregate approved budget and closed actuals at the same account, entity, currency and reporting period. Join on a unique composite key. Flag unmapped accounts, missing periods, unexpected duplicates, zero budget denominators and reconciliation differences. Roll accounts into revenue, cost of revenue and operating expense using a versioned mapping table.
 
-### Worked validation
+#### Worked validation
 
 1. Verify budget 100,000 − 40,000 − 30,000 = 30,000.
 2. Verify actual 92,000 − 42,000 − 31,000 = 19,000.
@@ -135,7 +131,7 @@ Profit bridge = revenue variance − cost of revenue variance − opex variance
 5. If revenue is zero, do not calculate a meaningful profit margin.
 6. If source data is incomplete, do not mark the report complete merely because a sync job succeeded.
 
-## 8. Prioritization and design trade-offs
+### Prioritization and design trade-offs
 
 **Option 1:** Better Excel template and Power Query. Low cost, appropriate for a small team with few entities.
 
@@ -145,7 +141,7 @@ Profit bridge = revenue variance − cost of revenue variance − opex variance
 
 **Provisional choice:** Start with option 1 or configure existing tools; adopt option 2 when a measured repeated burden justifies it. Reject unverified autonomous financial commentary.
 
-## 9. North Star, success metrics and guardrails
+### North Star, success metrics and guardrails
 
 | Metric | Exact measurement | Baseline |
 | --- | --- | --- |
@@ -159,7 +155,7 @@ Profit bridge = revenue variance − cost of revenue variance − opex variance
 
 **Impact calculation:** Time saved per approved report × reports per month. This is employee capacity recovered. It is not automatically cash saving, and the vendor case study's reporting times cannot be assumed for this fictional example.
 
-## 10. Test and business decision
+### Test and business decision
 
 For a controlled test, generate six months of synthetic P&L input with missing months, changed mapping, duplicate GL transactions and true variances. Give analysts the old manual process and the proposed formula and exception workflow on counterbalanced reporting periods. Confirm all arithmetic with a separate audited spreadsheet. Measure time, correct detection, explanation quality, corrections and signoff errors.
 
