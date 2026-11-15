@@ -1,164 +1,254 @@
-# Improve trust, reliability and accuracy of AI agentic systems
+# Improving Trust, Reliability and Accuracy in AI Agentic Systems
 
-*P01 · Product Management & Analytics Research*
+*Product thinking · Agent architecture · Evaluation design*
 
-## 1. The case
+## The case in 60 seconds
 
-**Problem statement:** A finance analyst needs an AI agent to answer a consequential financial question correctly and with evidence. The agent must identify the approved metric, retrieve the right customer records, calculate the result, and explain when review is required.
+**The problem:** An AI agent can return a convincing financial answer, cite a dashboard and still be wrong. Worse, it may repeat a failed tool action, use stale records, or present an uncertain result as verified. These are not all “hallucinations.” They are different system failures requiring different controls.
 
-In the worked case, the analyst asks for October net revenue retention (NRR). The central risk is a plausible answer that uses the wrong customer cohort—even when the source figures are valid.
+**The question I wanted to solve:** How would I design an analytical agent that people can depend on—not just one that performs well in a demo?
 
-## 2. Proposed solution
+**My recommendation:** Start with a narrow, consequential workflow. Establish a source-of-truth and metric contract; separate language interpretation from deterministic calculation; insert validation and permission gates before consequential outputs or actions; instrument the execution trace; and test both successful completion and safe failure. Add agent autonomy only where it creates measurable value.
 
-**Recommendation:** Pilot a metric-definition contract, deterministic calculation, source-level traceability, and human review for material or uncertain answers. Start with one financial metric rather than rebuilding the entire agent.
+**Worked example:** A synthetic finance agent reports October net revenue retention (NRR) as **123%**. The correct answer is **103%**. The ₹20 lakh difference in the numerator comes from mistakenly including new-customer MRR in an existing-customer retention metric. The cited billing data can be real and the arithmetic internally consistent—and the conclusion can still be wrong.
 
-The agent should show the approved formula, inputs, exclusions, reporting period, and audit trail. It should withhold a definitive figure when essential inputs cannot be reconciled.
+**The product outcome I would optimize:** More *correct, evidence-backed tasks completed with acceptable review effort*, while keeping critical errors and unauthorized actions close to zero. Not simply more answers generated.
 
-## 3. Worked results and business impact
-
-**Worked result:** Correct October NRR is **103%**. A deliberately faulty answer gives **123%** by including new-customer MRR, overstating the metric by **20 percentage points**. This establishes the error mechanism in a synthetic example, not an observed AI-product accuracy improvement.
-
-**Potential business impact:** Fewer incorrect management metrics, less manual rechecking, and more verifiable analytical decisions. Evaluate this using correct, fully supported task completion; review time; and critical-error rates.
-
-**Evidence boundary:** The financial example is synthetic. No commercial agent was tested, and production accuracy or time savings have not been measured.
+**Evidence boundary:** This is an independent design case using invented data and proposed tests. I did not run a production experiment or measure real accuracy improvement.
 
 ---
 
-## 4. How we arrived at the recommendation
+## 1. Why this is a business problem, not just a model problem
 
-### Decision rationale
+Imagine a finance team using an agent to answer board-reporting questions. The agent pulls information from billing, a warehouse, contract records and an internal metric glossary. It returns an answer in seconds instead of the analyst manually reconciling spreadsheets.
 
-An agent should not be considered reliable simply because it produces a coherent answer or includes a citation. The first product improvement I would test is a **metric definition check with independently calculated numbers and traceable source records**.
+The value proposition is obvious: faster analysis, more questions answered and less repetitive work. But the failure cost is asymmetric. One incorrect number in a board report can trigger additional reviews, weaken confidence in the entire tool and potentially lead to a bad decision.
 
-I would not rebuild the whole agent. I would introduce this control at the point where its answer depends on a business calculation. Then I would measure whether correct answers increase without adding unacceptable delays or human review.
+This creates three independent product requirements:
 
-### Define the business problem precisely
-
-A financial planning analyst needs the October net revenue retention percentage for a subscription business. The company's financial data comes from billing records and customer changes. A wrong definition can create a plausible but misleading performance claim.
-
-The issue to solve is: **How can an analyst tell that an AI agent used the right customer population, source records and formula, before relying on its answer?**
-
-Success means a correct percentage, a clear formula, links to the underlying data and a visible warning if an input is missing. More generated words are not success.
-
-### What the agent is asked to do
-
-**User request:** “What is October net revenue retention, and did expansion offset losses from existing customers?”
-
-**Illustrative source data, in ₹ lakh of monthly recurring revenue:**
-
-| Input | October value | Meaning |
+| Dimension | Question to answer | Example failure |
 | --- | --- | --- |
-| Opening MRR from existing customers | 100 | MRR at the beginning of the month |
-| Lost MRR from those customers | 8 | Customers who canceled |
-| Contraction in those customers | 4 | Existing customers spending less |
-| Expansion in those customers | 15 | Existing customers spending more |
-| New customer MRR | 20 | Customers acquired during October |
+| **Accuracy** | Is this answer correct under the approved definition? | New customer revenue included in NRR |
+| **Reliability** | Will the workflow behave correctly and predictably across failures and variations? | Tool timeout leads to duplicate execution; partial records silently accepted |
+| **Trust** | Can an authorized user understand the evidence, uncertainty and action boundary? | Citation points to a dashboard but does not show the cohort, formula or approvals |
 
-**Correct NRR:** (100 − 8 − 4 + 15) ÷ 100 = **103%**.
+The business does not purchase “LLM intelligence” for its own sake. It purchases completed work it can safely use.
 
-**Correct gross revenue retention:** (100 − 8 − 4) ÷ 100 = **88%**.
+### The user and the job to be done
 
-**Ending total MRR:** 100 − 8 − 4 + 15 + 20 = **₹123 lakh**.
+**Primary user:** FP&A analyst preparing monthly management reporting.
 
-A deliberately faulty agent response might say “NRR is 123%” by dividing total ending MRR of ₹123 lakh by the opening ₹100 lakh. That is incorrect because new customer MRR belongs in ending total MRR but is excluded from NRR.
+**Job:** “Tell me October NRR, whether expansion offset churn, and show enough evidence for me to approve the number.”
 
-**Completed conclusion for the exercise:** Expansion of ₹15 lakh exceeded churn and contraction of ₹12 lakh by ₹3 lakh, so existing customer revenue grew 3%. New business added another ₹20 lakh, but it must not inflate NRR.
+**Adjacent stakeholders:** Finance lead (accountable for reporting), data owner (definitions and freshness), security/compliance (access controls) and engineering (operability).
 
-### Current user and system journey
+**Non-goal for the first iteration:** A universal autonomous finance analyst that can query anything and publish anything. That enlarges the failure surface before the basic workflow is trustworthy.
 
-The analyst asks a question. The assistant identifies a metric, calls a billing or warehouse tool, extracts five inputs, applies a formula, writes an answer and cites a source. The analyst checks it before entering it into a management report.
+## 2. Reproduce the failure before prescribing a solution
 
-| Stage | Expected behavior | What can go wrong |
+The agent receives:
+
+> What was October NRR? Did expansion revenue offset the losses from existing customers?
+
+Synthetic inputs, in ₹ lakh MRR:
+
+| Input | Amount | Treatment in NRR |
+| --- | ---: | --- |
+| Opening MRR from existing customers | 100 | Denominator and starting cohort |
+| Churn from existing customers | −8 | Subtract |
+| Contraction from existing customers | −4 | Subtract |
+| Expansion from existing customers | +15 | Add |
+| New-customer MRR | +20 | **Exclude** |
+
+**Correct NRR = (100 − 8 − 4 + 15) / 100 = 103%.**
+
+**Gross revenue retention = (100 − 8 − 4) / 100 = 88%.**
+
+**Ending total MRR = 100 − 8 − 4 + 15 + 20 = ₹123 lakh.**
+
+The incorrect answer, **123%**, results from dividing ending *total* MRR by the opening existing-customer MRR. It is not a simple arithmetic slip: it is a **semantic definition failure**. The source data could be flawless and the agent's citation authentic.
+
+Expansion of ₹15 lakh exceeded churn plus contraction of ₹12 lakh by ₹3 lakh. So the correct business conclusion is that the starting customer cohort expanded by **3% net**, while new customers separately added ₹20 lakh.
+
+### Root cause: where the failure enters the pipeline
+
+| Pipeline stage | Failure hypothesis | How I would verify it |
 | --- | --- | --- |
-| Interpret | Recognize the request as NRR, not total MRR growth | Wrong metric definition |
-| Retrieve | Fetch the same cohort and period from billing records | New and existing customers mixed |
-| Calculate | Apply the NRR formula deterministically | Freeform arithmetic or incorrect denominator |
-| Explain | Distinguish expansion, losses and new business | Misleading growth narrative |
-| Verify | Provide the exact inputs, period and source | Citation points only to a dashboard title |
-| Approve | Analyst confirms before publication | Unchecked error enters a report |
+| Intent interpretation | “Revenue retention” mapped to overall revenue growth | Inspect selected metric ID and definition version |
+| Retrieval | New and existing customers mixed in the returned population | Compare customer IDs and opening-cohort membership |
+| Calculation | LLM improvised numerator or denominator | Recalculate with a deterministic function |
+| Explanation | Answer failed to distinguish retention from acquisition | Compare narrative with component-level results |
+| Evidence | Citation referenced a dashboard rather than specific source rows | Replay data query and inspect source IDs |
+| Release | No material-metric approval gate | Inspect approval state and publication events |
 
-This is a proposed workflow for the case study, not an observation of a named company's product.
+For this constructed case, the incorrect cohort inclusion is the demonstrated cause. The other rows are **failure hypotheses to test**, not claims about a real deployed agent.
 
-### Root cause analysis
+### The deeper problem
 
-**Observed failure in the constructed fixture:** The example faulty answer says 123%; the correctly defined result is 103%.
+A better prompt saying “be accurate” will not enforce a stable metric definition, prevent stale retrieval, guarantee tool idempotency or authorize publication. The agent needs a controlled environment—its **harness**—that makes the correct behavior easier and incorrect behavior detectable.
 
-The difference is not a rounding problem. It is caused by including ₹20 lakh of new customer MRR in a metric defined around the existing customer cohort.
+## 3. The system I would design
 
-| Candidate cause | Test | Decision |
+I would avoid building a swarm of agents. For this workflow, one orchestrating agent plus well-defined tools and independent checks is easier to test, cheaper to operate and more interpretable.
+
+**Proposed flow:**
+
+1. **Interpret and authorize:** Resolve the requested metric, reporting period, user permissions and intended output (analysis versus publication). Ask for clarification when a required choice remains ambiguous.
+2. **Retrieve controlled context:** Load the approved NRR definition, opening cohort, billing movements, timestamps and source-record IDs. Treat retrieved documents as data, not executable instructions.
+3. **Compute outside the LLM:** Call a typed calculation tool with explicit inputs and formula version; do not let a free-form explanation become the calculation engine.
+4. **Verify:** Check period alignment, cohort membership, unique IDs, currency, missing values and reconciliation against ending MRR. Compare result and narrative for contradictions.
+5. **Decide whether to release:** Return a verified answer when checks pass; otherwise expose the exception and withhold a definitive result. A human remains responsible for final board-report publication.
+6. **Record and learn:** Save trace metadata, rule outcomes, source versions, approval state, corrections and failure codes for evaluation.
+
+### Contracts that make each step testable
+
+| Contract | Minimum fields / controls | Why it matters |
 | --- | --- | --- |
-| Billing values are wrong | Independently reconcile all five MRR components | Not indicated by this synthetic example |
-| A customer is counted twice | Check unique customer identifiers and effective dates | Needs a separate validation case |
-| Wrong cohort definition | Compare cohort membership against metric contract | Directly explains the constructed error |
-| Arithmetic failed | Recalculate with a simple formula | Formula itself is straightforward once inputs are right |
-| Agent cited data but not its method | Ask reviewer to reconstruct numerator and denominator | Makes error difficult to notice |
+| Metric contract | metric_id, definition_version, formula, eligible cohort, exclusions | Prevents semantic drift |
+| Retrieval contract | customer_id, period, currency, as_of timestamp, source_record_id | Prevents unverifiable mixing |
+| Tool contract | Typed input/output schema, timeouts, explicit error codes | Prevents silent partial success |
+| Validation contract | Required reconciliations, tolerances, severity, pass/fail status | Creates independent checks |
+| Action contract | Requester identity, allowed scope, approval state, idempotency key | Prevents unauthorized or duplicate effects |
+| Evidence contract | Formula, component amounts, source references, exceptions, reviewer | Lets users reproduce and challenge results |
 
-**Confirmed root cause within this synthetic example:** The wrong customer population was used. Real agent failures would require log analysis and labelled examples before making the same diagnosis.
+A citation is not proof. The useful evidence unit is **the exact claim linked to the source records, definition and computation that produced it**.
 
-### Compare solutions
+## 4. Designing for failure, not just the happy path
 
-**Option A: Add more prompt instructions.** Cheap, but model behavior may remain inconsistent.
+The most revealing tests are often not “Can it answer the clean case?” but “What does it do when the environment is messy?”
 
-**Option B: Show raw billing tables and let analysts check everything.** Verifiable, but leaves substantial manual work.
-
-**Option C: Enforce a metric contract, calculate it independently and display evidence.** More engineering work, but directly prevents the error demonstrated here.
-
-**Decision:** Test Option C on NRR first. Keep a manual review path. Do not infer that every AI question needs the same control.
-
-### Proposed product solution
-
-The assistant should first retrieve a metric definition: opening existing customer MRR; remove churn and contraction; add expansion; exclude new customers. It then gathers the five inputs with source IDs and periods. A calculation function computes NRR. A validation step checks completeness and any conflicting population definitions.
-
-The response can say:
-
-> October NRR was 103%. Existing customers began with ₹100 lakh of MRR, lost ₹12 lakh through churn and contraction, and added ₹15 lakh of expansion. New customer MRR of ₹20 lakh is excluded from NRR. \[View inputs and calculation\]
-
-The system should not produce a definitive percentage if opening MRR is missing, the source period is inconsistent or customer IDs cannot be classified reliably.
-
-**Minimum requirements:** Display formula and units; preserve source batch; distinguish existing from new customers; report data freshness; make results reproducible; allow analyst correction; keep an audit log.
-
-### Data model and validation
-
-| Field | Why needed |
-| --- | --- |
-| customer\_id, contract\_id | Unique subscription identity |
-| billing\_period, source\_as\_of | Consistent reporting date |
-| opening\_mrr, ending\_mrr | Reconciliation |
-| change\_type | New, churn, contraction or expansion |
-| metric\_definition\_version | Stable meaning across runs |
-| source\_record\_id, tool\_run\_id | Evidence and debugging |
-| calculation\_result, reviewer\_status | Independent check and approval |
-
-Validation rules include no duplicate customer and period keys, nonnegative opening MRR, consistent currency, stable account identity, reconciled total movements, and explicit treatment of midmonth new accounts.
-
-### North Star metric, KPIs and guardrails
-
-| Measure | Exact definition | Baseline |
+| Scenario | Unsafe behavior | Expected reliable behavior |
 | --- | --- | --- |
-| Product North Star candidate | Verified analytical questions completed per active team each week | Unknown |
-| Primary success | Fully correct and supported task answers ÷ eligible tested questions | Not measured |
-| Metric definition accuracy | Questions using correct approved formula and cohort ÷ evaluated questions | Synthetic error identified only |
-| Numerical error rate | Incorrect numerical claims ÷ reviewed numerical claims | Not measured |
-| Verification time | Median time to approve a correct answer | Not measured |
-| Human correction burden | Manual corrections needed per eligible task | Not measured |
-| Guardrails | Wrong approvals, excessive latency, rejected correct answers, cost per verified task | Not measured |
+| Billing API times out | Invent numbers or retry indefinitely | Bounded retry with backoff; fail visibly if unresolved |
+| One customer appears twice | Count both rows | Detect duplicate business key and stop reconciliation |
+| Warehouse is two days stale | Present result as current | Show as-of time; block if freshness requirement fails |
+| Two sources disagree | Pick the first convenient value | Follow approved precedence, or escalate unresolved conflict |
+| Metric definition changed | Silently reuse old formula | Pin and disclose approved metric version |
+| Document includes malicious instructions | Treat retrieved text as commands | Isolate untrusted content from system/tool permissions |
+| Agent asked to publish to board pack | Publish after generating plausible prose | Require authorized reviewer approval |
+| External write succeeds but response times out | Repeat and create a duplicate | Check operation status using idempotency key before retrying |
 
-A success claim needs both correctness and completion. If the system refuses every answer it would avoid numerical errors while failing the product's purpose.
+**Recovery policy:** Retry *transient* errors within a fixed budget. Never automatically retry permission denials, failed reconciliations or irreversible write actions without establishing previous execution status. Preserve partial work only when it can be safely resumed.
 
-### Test design
+**Escalation policy:** There must be a usable answer state between “success” and “failure”: *insufficient evidence*, *conflicting records*, *needs reviewer decision*, or *not authorized*. Appropriate abstention is a product capability, not an embarrassment.
 
-Create 24 fixed source cases covering new customers, churn, expansion, reactivation, mixed currencies, duplicates, late transactions and missing data. Freeze the gold calculation and expected behavior before testing.
+### Model confidence is not enough
 
-Compare a basic agent workflow with the same workflow using a metric contract and independent calculation. Have finance reviewers grade correctness, evidence, appropriate abstention, timing and effort.
+The model saying it is “95% confident” is not a verified probability. I would base release decisions on observable conditions: passing checks, evidence completeness, freshness, evaluator performance for that scenario, and severity of the intended action. Any calibrated confidence score would need separate empirical validation.
 
-**Decision rule:** Continue only if critical errors are reduced on held out cases and reviewers still complete realistic tasks efficiently. A small synthetic benchmark is a feasibility check, not proof of production improvement.
+## 5. Controls by risk: not every action deserves the same friction
 
-### Business value and recommendation
+I would use a risk-tiered approval design:
 
-The value mechanism is fewer wrong or manually reworked analytical answers. Potential time benefit equals eligible correctly completed tasks × measured reduction in checking minutes. Do not convert time saved into payroll savings without evidence.
+| Task | Risk | Default autonomy |
+| --- | --- | --- |
+| Summarize a non-sensitive metric glossary | Low | Automatic, with source links |
+| Draft an NRR explanation using validated outputs | Moderate | Automatic draft, clearly marked for review |
+| Finalize a material management-report number | High | Deterministic verification plus accountable human approval |
+| Send financial instructions or change authoritative records | Critical | Strict authorization, independent controls and explicit approval; no free-form autonomous execution |
 
-**Final case decision:** The root cause and correct result are resolved in the synthetic example. Recommend a limited metric contract plus deterministic calculation pilot, not a full agent redesign.
+The tradeoff is important: maximum approvals reduce autonomy, but zero approvals increase risk. Human-in-the-loop should concentrate where the *expected cost of a wrong action* justifies the review burden.
 
-**What remains unknown:** Actual customer error frequency, availability of approved metric definitions, performance of existing products, and user improvement in real workflows.
+Security controls are also not interchangeable with accuracy controls. A correct calculation performed on unauthorized customer data is still an unacceptable outcome.
 
-**Portfolio evidence produced:** Defined user problem, independently checked formula, root cause analysis, solution alternatives, specific requirements, measurable evaluation and a conditional product decision.
+## 6. Evaluation: prove improvement instead of describing it
+
+I would use a fixed, labelled test set and trace-based evaluations before changing models or adding agents.
+
+### Test fixture
+
+Start with **24 synthetic cases** across clean NRR, cohort changes, reactivation, duplicates, mixed currencies, late postings, conflicting definitions, stale tools, missing fields and authorization failures. Expand with real anonymized or permissioned failure cases when available.
+
+For each case, freeze:
+
+- Requested task and allowed action
+- Input fixtures and expected calculation
+- Correct evidence and definition version
+- Expected behavior: answer, clarify, abstain or escalate
+- Failure severity and acceptable latency
+
+### Evaluation layers
+
+| Layer | Evaluator | Key question |
+| --- | --- | --- |
+| Extraction | Field-level exact match and source validation | Were values associated with the correct accounts and periods? |
+| Definition | Approved metric contract check | Was the right population/formula used? |
+| Arithmetic | Deterministic reference calculation | Does the number reconcile? |
+| Execution | Tool-call / trace assertions | Did tools run in the right order without unsafe retries? |
+| Grounding | Claim-to-evidence review | Can each material claim be reconstructed? |
+| Safety | Permission and adversarial tests | Did the agent block prohibited actions and injected instructions? |
+| Product | Human reviewer assessment | Was the result useful with less checking effort? |
+
+LLM-as-judge can help assess explanations and semantic quality, but I would **not** delegate exact financial arithmetic or permission enforcement to an LLM judge. Review the judges against human-labelled examples too.
+
+### Primary and guardrail metrics
+
+**Primary success:** Verified task completion rate = correctly completed, evidence-supported tasks / eligible attempted tasks.
+
+**Quality metrics:** Critical numerical error rate; metric-definition accuracy; source coverage; inappropriate-answer rate; inappropriate-abstention rate.
+
+**Reliability metrics:** End-to-end success rate; recoverable-failure recovery rate; duplicate side-effect count; timeout rate; p95 task latency.
+
+**Trust and adoption metrics:** Median reviewer verification minutes; correction rate; percentage of validated outputs accepted; repeat usage by analysts; number of escalations resolved.
+
+**Economic metrics:** Cost per verified task, including model/tool spending and human review time—not cost per model response.
+
+A system that refuses every request might produce no incorrect numbers but also no value. That is why accuracy must be evaluated **alongside completion and review cost**.
+
+### What would convince me to ship?
+
+Compare the existing workflow against the new metric-contract-plus-verification workflow on the *same held-out cases*. Require no critical failures on the defined acceptance suite, an improvement in verified completion, and acceptable review time and latency. Then run a limited, monitored pilot with named owners and rollback criteria.
+
+A perfect score on 24 examples would demonstrate only that those examples passed. It would not prove production reliability.
+
+## 7. Which improvement should the PM prioritize?
+
+There are multiple plausible solutions. I would explicitly compare them before implementing.
+
+| Option | Impact on demonstrated error | Engineering effort | Main limitation |
+| --- | --- | --- | --- |
+| A. Stronger system prompt | Low / uncertain | Low | Cannot guarantee cohort membership or arithmetic |
+| B. More retrieval and richer citations | Moderate | Moderate | More data can also introduce conflicting definitions |
+| C. Metric contract + deterministic compute + reconciliation | **High** | Moderate | Requires agreement on business definitions and source access |
+| D. Multi-agent reviewer / debate | Uncertain | High | Adds cost, latency and correlated model errors |
+| E. Human checks every field | High for reviewed cases | High recurring cost | Limits throughput and does not fix the underlying system |
+
+**My first bet is Option C**, with a narrow human approval boundary. Not because every agent should be deterministic, but because the demonstrated failure is a known business rule violation that can be checked mechanically.
+
+I would postpone multi-agent review until trace data shows a class of errors that independent specialist reasoning actually improves.
+
+## 8. Value creation and rollout
+
+The business case must be quantified from a baseline, not assumed.
+
+**Value mechanism:** Reduce analyst rework and critical errors while preserving useful throughput.
+
+A simple measurement model:
+
+> Monthly review time saved = eligible correctly completed tasks × measured reduction in reviewer minutes per task.
+
+For illustration only, if a team completes 400 validated tasks per month and saves 6 review minutes per task, that is **40 hours of review effort avoided monthly**. This is released capacity, *not automatically payroll savings*. The calculation excludes implementation and ongoing operating costs, which need to be measured separately.
+
+### Rollout sequence
+
+**Phase 1 — Baseline:** Instrument current agent tasks, reconstruct errors and define severity. Establish who owns the metric definition.
+
+**Phase 2 — Controlled pilot:** Implement NRR contract, deterministic calculation, evidence view, exception states and reviewer approval. Test the fixed suite.
+
+**Phase 3 — Live evaluation:** Run in shadow mode or draft-only mode; compare agent outputs with analyst-approved answers and measure task economics.
+
+**Phase 4 — Expand selectively:** Add adjacent metrics only after proving that existing contracts and control patterns generalize. Introduce higher autonomy gradually and with explicit rollback conditions.
+
+The deepest risk is not a single incorrect formula. It is scaling an agent before anyone can answer: *which source did it use, which definition did it apply, which checks passed, what action did it take, and who was accountable?*
+
+## Final recommendation
+
+For high-consequence analytical agents, I would prioritize **system-enforced correctness over prompt-based confidence**.
+
+Build the smallest workflow where you can reproduce the error, introduce independent controls at the actual failure point, measure **verified task completion**, and make exceptions visible rather than hiding them behind fluent explanations.
+
+A trustworthy agent is not one that never encounters uncertainty. It is one that **knows when it lacks sufficient evidence, does not cross its authority boundary, can recover safely, and gives users a reproducible basis for deciding whether to rely on its work**.
+
+---
+
+*Method note: All numbers, scenarios and proposed controls here are illustrative. This is a product/architecture proposal, not a claim of deployed results.*
