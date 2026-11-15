@@ -13,11 +13,11 @@ The portfolio has two reading spaces:
 
 ## Featured case study
 
-### [Improving Repeat FD Investments (CLV): Root Cause Analysis](case-studies/Improving%20Repeat%20FD%20Investments%20%28CLV%29%3A%20Root%20Cause%20Analysis)
+### [Reducing Capital-Call Operations Effort: LP Communication Agent](case-studies/capital-call-lp-communication-agent.md)
 
-A practice Product Management case about why customers who completed their first fixed deposit might not invest again. It follows the problem from defining the repeat investment rate through customer groups, possible causes, two scenarios, a 5 Whys exercise, a proposed solution and its tradeoffs.
+A private-markets product case study: capital-call workflow analysis, administrator effort decomposition, provisional prioritization, focused RCA, and a Claude Managed Agents solution with ten reliability tests.
 
-**[Read the case study](case-studies/Improving%20Repeat%20FD%20Investments%20%28CLV%29%3A%20Root%20Cause%20Analysis)** · **[Explore the full mind map](https://whimsical.com/X6jYEXqktCqQYQioPWoXxC)**
+**[Read the case study](case-studies/capital-call-lp-communication-agent.md)** · **[Explore the Whimsical workflow](https://whimsical.com/4tqq9srh4o5kH2iHpsTEUG)**
 
 ## Research articles
 
