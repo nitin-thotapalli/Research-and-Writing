@@ -14,8 +14,6 @@
 
 **The product outcome I would optimize:** More *correct, evidence-backed tasks completed with acceptable review effort*, while keeping critical errors and unauthorized actions close to zero. Not simply more answers generated.
 
-**Evidence boundary:** This is an independent design case using invented data and proposed tests. I did not run a production experiment or measure real accuracy improvement.
-
 ---
 
 ## 1. Why this is a business problem, not just a model problem
